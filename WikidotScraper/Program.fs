@@ -62,11 +62,11 @@ let main args =
             |> Option.filter (fun href -> not (href.Value() = "/os-tuning")))
             |> Seq.map (fun x -> x.Value())
     
-    let scrape =
+    let scrapeHead =
         links
         |> Seq.item 0
         |> buildUrl
         |> pageContent
 
-    printfn "scraped page: %A" scrape
+    printfn "scraped /head page: %A" scrapeHead
     0

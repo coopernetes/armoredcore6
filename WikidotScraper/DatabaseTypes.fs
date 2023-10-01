@@ -35,9 +35,9 @@ module main =
     [<CLIMutable>]
     type parts_frame_arms =
         { id: int64
-          name: Option<string>
-          manufacturer: Option<string>
-          ap: Option<int64>
+          name: string
+          manufacturer: string
+          ap: int64
           def_kinetic: Option<int64>
           def_energy: Option<int64>
           def_explosive: Option<int64>
@@ -46,9 +46,9 @@ module main =
           recoil_control: Option<int64>
           firearms_spec: Option<int64>
           melee_spec: Option<int64>
-          weight: Option<int64>
-          en_load: Option<int64>
-          description: Option<string>
+          weight: int64
+          en_load: int64
+          description: string
           image: Option<byte []> }
 
     let parts_frame_arms = SqlHydra.Query.Table.table<parts_frame_arms>
@@ -56,9 +56,9 @@ module main =
     [<CLIMutable>]
     type parts_frame_core =
         { id: int64
-          name: Option<string>
-          manufacturer: Option<string>
-          ap: Option<int64>
+          name: string
+          manufacturer: string
+          ap: int64
           def_kinetic: Option<int64>
           def_energy: Option<int64>
           def_explosive: Option<int64>
@@ -67,9 +67,9 @@ module main =
           booster_efficiency_adj: Option<int64>
           generator_output_adj: Option<int64>
           generator_supply_adj: Option<int64>
-          weight: Option<int64>
-          en_load: Option<int64>
-          description: Option<string>
+          weight: int64
+          en_load: int64
+          description: string
           image: Option<byte []> }
 
     let parts_frame_core = SqlHydra.Query.Table.table<parts_frame_core>
@@ -77,9 +77,9 @@ module main =
     [<CLIMutable>]
     type parts_frame_head =
         { id: int64
-          name: Option<string>
-          manufacturer: Option<string>
-          ap: Option<int64>
+          name: string
+          manufacturer: string
+          ap: int64
           def_kinetic: Option<int64>
           def_energy: Option<int64>
           def_explosive: Option<int64>
@@ -88,9 +88,9 @@ module main =
           system_recovery: Option<int64>
           scan_distance: Option<int64>
           scan_effect_duration: Option<double>
-          weight: Option<int64>
-          en_load: Option<int64>
-          description: Option<string>
+          weight: int64
+          en_load: int64
+          description: string
           image: Option<byte []> }
 
     let parts_frame_head = SqlHydra.Query.Table.table<parts_frame_head>
@@ -98,9 +98,9 @@ module main =
     [<CLIMutable>]
     type parts_frame_legs =
         { id: int64
-          name: Option<string>
-          manufacturer: Option<string>
-          ap: Option<int64>
+          name: string
+          manufacturer: string
+          ap: int64
           def_kinetic: Option<int64>
           def_energy: Option<int64>
           def_explosive: Option<int64>
@@ -109,9 +109,9 @@ module main =
           load_limit: Option<int64>
           jump_distance: Option<int64>
           jump_height: Option<int64>
-          weight: Option<int64>
-          en_load: Option<int64>
-          description: Option<string>
+          weight: int64
+          en_load: int64
+          description: string
           image: Option<byte []> }
 
     let parts_frame_legs = SqlHydra.Query.Table.table<parts_frame_legs>
@@ -119,8 +119,8 @@ module main =
     [<CLIMutable>]
     type parts_internal_boosters =
         { id: int64
-          name: Option<string>
-          manufacturer: Option<string>
+          name: string
+          manufacturer: string
           thrust: Option<int64>
           upward_thrust: Option<int64>
           upward_en_consumption: Option<int64>
@@ -128,14 +128,14 @@ module main =
           qb_jet_duration: Option<double>
           qb_en_consumption: Option<int64>
           qb_reload_time: Option<double>
-          qb_reload_ideal_weight: Option<int64>
+          qb_reload_ideal_weight: int64
           ab_thrust: Option<int64>
           ab_en_consumption: Option<int64>
           melee_atk_thrust: Option<int64>
           melee_atk_en_consumption: Option<int64>
-          weight: Option<int64>
-          en_load: Option<int64>
-          description: Option<string>
+          weight: int64
+          en_load: int64
+          description: string
           image: Option<byte []> }
 
     let parts_internal_boosters = SqlHydra.Query.Table.table<parts_internal_boosters>
@@ -143,17 +143,17 @@ module main =
     [<CLIMutable>]
     type parts_internal_fcs =
         { id: int64
-          name: Option<string>
-          manufacturer: Option<string>
+          name: string
+          manufacturer: string
           close_assist: Option<int64>
           medium_assist: Option<int64>
           long_assist: Option<int64>
           avg_assist: Option<int64>
           missile_correction: Option<int64>
           multi_lock_correction: Option<int64>
-          weight: Option<int64>
-          en_load: Option<int64>
-          description: Option<string>
+          weight: int64
+          en_load: int64
+          description: string
           image: Option<byte []> }
 
     let parts_internal_fcs = SqlHydra.Query.Table.table<parts_internal_fcs>
@@ -161,16 +161,16 @@ module main =
     [<CLIMutable>]
     type parts_internal_generator =
         { id: int64
-          name: Option<string>
-          manufacturer: Option<string>
+          name: string
+          manufacturer: string
           en_capacity: Option<int64>
           en_recharge: Option<int64>
           supply_recovery: Option<int64>
           post_recovery_en_supply: Option<int64>
           energy_firearm_spec: Option<int64>
-          weight: Option<int64>
-          en_load: Option<int64>
-          description: Option<string>
+          weight: int64
+          en_load: int64
+          description: string
           image: Option<byte []> }
 
     let parts_internal_generator = SqlHydra.Query.Table.table<parts_internal_generator>
@@ -179,9 +179,9 @@ module main =
     type parts_weapon =
         { id: int64
           slot: Option<string>
-          name: Option<string>
+          name: string
           part_type: Option<string>
-          manufacturer: Option<string>
+          manufacturer: string
           attack_power: Option<int64>
           attack_power_multiplier: Option<int64>
           impact: Option<int64>
@@ -200,9 +200,9 @@ module main =
           cooling: Option<int64>
           ammo_cost: Option<int64>
           consecutive_hits: Option<int64>
-          weight: Option<int64>
-          en_load: Option<int64>
-          description: Option<string>
+          weight: int64
+          en_load: int64
+          description: string
           image: Option<byte []> }
 
     let parts_weapon = SqlHydra.Query.Table.table<parts_weapon>
@@ -220,9 +220,9 @@ module main =
     module Readers =
         type parts_frame_armsReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
-            member __.name = OptionalColumn(reader, getOrdinal, reader.GetString, "name")
-            member __.manufacturer = OptionalColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.ap = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ap")
+            member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
+            member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
+            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
             member __.def_kinetic = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_kinetic")
             member __.def_energy = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_energy")
             member __.def_explosive = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_explosive")
@@ -231,9 +231,9 @@ module main =
             member __.recoil_control = OptionalColumn(reader, getOrdinal, reader.GetInt64, "recoil_control")
             member __.firearms_spec = OptionalColumn(reader, getOrdinal, reader.GetInt64, "firearms_spec")
             member __.melee_spec = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_spec")
-            member __.weight = OptionalColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_load")
-            member __.description = OptionalColumn(reader, getOrdinal, reader.GetString, "description")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
@@ -259,9 +259,9 @@ module main =
 
         type parts_frame_coreReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
-            member __.name = OptionalColumn(reader, getOrdinal, reader.GetString, "name")
-            member __.manufacturer = OptionalColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.ap = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ap")
+            member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
+            member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
+            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
             member __.def_kinetic = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_kinetic")
             member __.def_energy = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_energy")
             member __.def_explosive = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_explosive")
@@ -270,9 +270,9 @@ module main =
             member __.booster_efficiency_adj = OptionalColumn(reader, getOrdinal, reader.GetInt64, "booster_efficiency_adj")
             member __.generator_output_adj = OptionalColumn(reader, getOrdinal, reader.GetInt64, "generator_output_adj")
             member __.generator_supply_adj = OptionalColumn(reader, getOrdinal, reader.GetInt64, "generator_supply_adj")
-            member __.weight = OptionalColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_load")
-            member __.description = OptionalColumn(reader, getOrdinal, reader.GetString, "description")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
@@ -298,9 +298,9 @@ module main =
 
         type parts_frame_headReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
-            member __.name = OptionalColumn(reader, getOrdinal, reader.GetString, "name")
-            member __.manufacturer = OptionalColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.ap = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ap")
+            member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
+            member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
+            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
             member __.def_kinetic = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_kinetic")
             member __.def_energy = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_energy")
             member __.def_explosive = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_explosive")
@@ -309,9 +309,9 @@ module main =
             member __.system_recovery = OptionalColumn(reader, getOrdinal, reader.GetInt64, "system_recovery")
             member __.scan_distance = OptionalColumn(reader, getOrdinal, reader.GetInt64, "scan_distance")
             member __.scan_effect_duration = OptionalColumn(reader, getOrdinal, reader.GetDouble, "scan_effect_duration")
-            member __.weight = OptionalColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_load")
-            member __.description = OptionalColumn(reader, getOrdinal, reader.GetString, "description")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
@@ -337,9 +337,9 @@ module main =
 
         type parts_frame_legsReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
-            member __.name = OptionalColumn(reader, getOrdinal, reader.GetString, "name")
-            member __.manufacturer = OptionalColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.ap = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ap")
+            member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
+            member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
+            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
             member __.def_kinetic = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_kinetic")
             member __.def_energy = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_energy")
             member __.def_explosive = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_explosive")
@@ -348,9 +348,9 @@ module main =
             member __.load_limit = OptionalColumn(reader, getOrdinal, reader.GetInt64, "load_limit")
             member __.jump_distance = OptionalColumn(reader, getOrdinal, reader.GetInt64, "jump_distance")
             member __.jump_height = OptionalColumn(reader, getOrdinal, reader.GetInt64, "jump_height")
-            member __.weight = OptionalColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_load")
-            member __.description = OptionalColumn(reader, getOrdinal, reader.GetString, "description")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
@@ -376,8 +376,8 @@ module main =
 
         type parts_internal_boostersReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
-            member __.name = OptionalColumn(reader, getOrdinal, reader.GetString, "name")
-            member __.manufacturer = OptionalColumn(reader, getOrdinal, reader.GetString, "manufacturer")
+            member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
+            member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "thrust")
             member __.upward_thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "upward_thrust")
             member __.upward_en_consumption = OptionalColumn(reader, getOrdinal, reader.GetInt64, "upward_en_consumption")
@@ -385,14 +385,14 @@ module main =
             member __.qb_jet_duration = OptionalColumn(reader, getOrdinal, reader.GetDouble, "qb_jet_duration")
             member __.qb_en_consumption = OptionalColumn(reader, getOrdinal, reader.GetInt64, "qb_en_consumption")
             member __.qb_reload_time = OptionalColumn(reader, getOrdinal, reader.GetDouble, "qb_reload_time")
-            member __.qb_reload_ideal_weight = OptionalColumn(reader, getOrdinal, reader.GetInt64, "qb_reload_ideal_weight")
+            member __.qb_reload_ideal_weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "qb_reload_ideal_weight")
             member __.ab_thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ab_thrust")
             member __.ab_en_consumption = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ab_en_consumption")
             member __.melee_atk_thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_atk_thrust")
             member __.melee_atk_en_consumption = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_atk_en_consumption")
-            member __.weight = OptionalColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_load")
-            member __.description = OptionalColumn(reader, getOrdinal, reader.GetString, "description")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
@@ -421,17 +421,17 @@ module main =
 
         type parts_internal_fcsReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
-            member __.name = OptionalColumn(reader, getOrdinal, reader.GetString, "name")
-            member __.manufacturer = OptionalColumn(reader, getOrdinal, reader.GetString, "manufacturer")
+            member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
+            member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.close_assist = OptionalColumn(reader, getOrdinal, reader.GetInt64, "close_assist")
             member __.medium_assist = OptionalColumn(reader, getOrdinal, reader.GetInt64, "medium_assist")
             member __.long_assist = OptionalColumn(reader, getOrdinal, reader.GetInt64, "long_assist")
             member __.avg_assist = OptionalColumn(reader, getOrdinal, reader.GetInt64, "avg_assist")
             member __.missile_correction = OptionalColumn(reader, getOrdinal, reader.GetInt64, "missile_correction")
             member __.multi_lock_correction = OptionalColumn(reader, getOrdinal, reader.GetInt64, "multi_lock_correction")
-            member __.weight = OptionalColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_load")
-            member __.description = OptionalColumn(reader, getOrdinal, reader.GetString, "description")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
@@ -454,16 +454,16 @@ module main =
 
         type parts_internal_generatorReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
-            member __.name = OptionalColumn(reader, getOrdinal, reader.GetString, "name")
-            member __.manufacturer = OptionalColumn(reader, getOrdinal, reader.GetString, "manufacturer")
+            member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
+            member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.en_capacity = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_capacity")
             member __.en_recharge = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_recharge")
             member __.supply_recovery = OptionalColumn(reader, getOrdinal, reader.GetInt64, "supply_recovery")
             member __.post_recovery_en_supply = OptionalColumn(reader, getOrdinal, reader.GetInt64, "post_recovery_en_supply")
             member __.energy_firearm_spec = OptionalColumn(reader, getOrdinal, reader.GetInt64, "energy_firearm_spec")
-            member __.weight = OptionalColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_load")
-            member __.description = OptionalColumn(reader, getOrdinal, reader.GetString, "description")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
@@ -486,9 +486,9 @@ module main =
         type parts_weaponReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.slot = OptionalColumn(reader, getOrdinal, reader.GetString, "slot")
-            member __.name = OptionalColumn(reader, getOrdinal, reader.GetString, "name")
+            member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.part_type = OptionalColumn(reader, getOrdinal, reader.GetString, "part_type")
-            member __.manufacturer = OptionalColumn(reader, getOrdinal, reader.GetString, "manufacturer")
+            member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.attack_power = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attack_power")
             member __.attack_power_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attack_power_multiplier")
             member __.impact = OptionalColumn(reader, getOrdinal, reader.GetInt64, "impact")
@@ -507,9 +507,9 @@ module main =
             member __.cooling = OptionalColumn(reader, getOrdinal, reader.GetInt64, "cooling")
             member __.ammo_cost = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ammo_cost")
             member __.consecutive_hits = OptionalColumn(reader, getOrdinal, reader.GetInt64, "consecutive_hits")
-            member __.weight = OptionalColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_load")
-            member __.description = OptionalColumn(reader, getOrdinal, reader.GetString, "description")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =

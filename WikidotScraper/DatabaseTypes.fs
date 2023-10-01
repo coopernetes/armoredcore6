@@ -210,7 +210,7 @@ module main =
     [<CLIMutable>]
     type test =
         { id: int64
-          text_field: Option<string>
+          text_field: string
           number: Option<int64>
           number2: Option<double>
           data: Option<byte []> }
@@ -546,7 +546,7 @@ module main =
 
         type testReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
-            member __.text_field = OptionalColumn(reader, getOrdinal, reader.GetString, "text_field")
+            member __.text_field = RequiredColumn(reader, getOrdinal, reader.GetString, "text_field")
             member __.number = OptionalColumn(reader, getOrdinal, reader.GetInt64, "number")
             member __.number2 = OptionalColumn(reader, getOrdinal, reader.GetDouble, "number2")
             member __.data = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "data")

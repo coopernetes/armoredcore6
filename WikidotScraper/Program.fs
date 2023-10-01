@@ -43,11 +43,11 @@ let main args =
     let task = 
         selectTask HydraReader.Read (Create openContext) {
             for p in main.test do
-            select (p.id, p.text_field, p.number, p.number2, p.data) into selected
+            select (p.id, p.text_field ,p.number, p.number2, p.data) into selected
             mapList (
                 let id, text, num, num2, data = selected
                 $"id: {id} " +
-                $"""text_field: {if text.IsSome then text.Value else "NULL"} """ +
+                $"text_field: {text} " +
                 $"""number: {if num.IsSome then num.Value else 0} """ +
                 $"""number2: {if num2.IsSome then num2.Value else 0} """ +
                 $"""data: {if data.IsSome then System.Text.Encoding.UTF8.GetString data.Value else "NULL"}"""

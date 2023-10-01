@@ -38,14 +38,14 @@ module main =
           name: string
           manufacturer: string
           ap: int64
-          def_kinetic: Option<int64>
-          def_energy: Option<int64>
-          def_explosive: Option<int64>
-          def_avg: Option<int64>
+          anti_kinetic_defense: Option<int64>
+          anti_energy_defense: Option<int64>
+          anti_explosive_defense: Option<int64>
+          average_defense: Option<int64>
           arms_load_limit: Option<int64>
           recoil_control: Option<int64>
-          firearms_spec: Option<int64>
-          melee_spec: Option<int64>
+          firearms_specialization: Option<int64>
+          melee_specialization: Option<int64>
           weight: int64
           en_load: int64
           description: string
@@ -59,14 +59,14 @@ module main =
           name: string
           manufacturer: string
           ap: int64
-          def_kinetic: Option<int64>
-          def_energy: Option<int64>
-          def_explosive: Option<int64>
-          def_avg: Option<int64>
+          anti_kinetic_defense: Option<int64>
+          anti_energy_defense: Option<int64>
+          anti_explosive_defense: Option<int64>
+          average_defense: Option<int64>
           attitude_stability: Option<int64>
-          booster_efficiency_adj: Option<int64>
-          generator_output_adj: Option<int64>
-          generator_supply_adj: Option<int64>
+          booster_efficiency_adjustment: Option<int64>
+          generator_output_adjustment: Option<int64>
+          generator_supply_adjustment: Option<int64>
           weight: int64
           en_load: int64
           description: string
@@ -80,10 +80,10 @@ module main =
           name: string
           manufacturer: string
           ap: int64
-          def_kinetic: Option<int64>
-          def_energy: Option<int64>
-          def_explosive: Option<int64>
-          def_avg: Option<int64>
+          anti_kinetic_defense: Option<int64>
+          anti_energy_defense: Option<int64>
+          anti_explosive_defense: Option<int64>
+          average_defense: Option<int64>
           attitude_stability: Option<int64>
           system_recovery: Option<int64>
           scan_distance: Option<int64>
@@ -101,10 +101,10 @@ module main =
           name: string
           manufacturer: string
           ap: int64
-          def_kinetic: Option<int64>
-          def_energy: Option<int64>
-          def_explosive: Option<int64>
-          def_avg: Option<int64>
+          anti_kinetic_defense: Option<int64>
+          anti_energy_defense: Option<int64>
+          anti_explosive_defense: Option<int64>
+          average_defense: Option<int64>
           attitude_stability: Option<int64>
           load_limit: Option<int64>
           jump_distance: Option<int64>
@@ -131,7 +131,7 @@ module main =
           qb_reload_ideal_weight: int64
           ab_thrust: Option<int64>
           ab_en_consumption: Option<int64>
-          melee_atk_thrust: Option<int64>
+          melee_attack_thrust: Option<int64>
           melee_atk_en_consumption: Option<int64>
           weight: int64
           en_load: int64
@@ -186,11 +186,11 @@ module main =
           attack_power_multiplier: Option<int64>
           impact: Option<int64>
           impact_multiplier: Option<int64>
-          accum_impact: Option<int64>
-          accum_impact_multiplier: Option<int64>
+          accumulative_impact: Option<int64>
+          accumulative_impact_multiplier: Option<int64>
           blast_radius: Option<int64>
-          atk_heat_buildup: Option<int64>
-          direct_hit_adj: Option<int64>
+          atk_heat_build_up: Option<int64>
+          direct_hit_adjustment: Option<int64>
           recoil: Option<int64>
           effective_range: Option<int64>
           range_limt: Option<int64>
@@ -198,7 +198,7 @@ module main =
           total_rounds: Option<int64>
           reload: Option<double>
           cooling: Option<int64>
-          ammo_cost: Option<int64>
+          ammunition_cost: Option<int64>
           consecutive_hits: Option<int64>
           weight: int64
           en_load: int64
@@ -223,14 +223,14 @@ module main =
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
-            member __.def_kinetic = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_kinetic")
-            member __.def_energy = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_energy")
-            member __.def_explosive = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_explosive")
-            member __.def_avg = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_avg")
+            member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
+            member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
+            member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
+            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "average_defense")
             member __.arms_load_limit = OptionalColumn(reader, getOrdinal, reader.GetInt64, "arms_load_limit")
             member __.recoil_control = OptionalColumn(reader, getOrdinal, reader.GetInt64, "recoil_control")
-            member __.firearms_spec = OptionalColumn(reader, getOrdinal, reader.GetInt64, "firearms_spec")
-            member __.melee_spec = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_spec")
+            member __.firearms_specialization = OptionalColumn(reader, getOrdinal, reader.GetInt64, "firearms_specialization")
+            member __.melee_specialization = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_specialization")
             member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
             member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
@@ -241,14 +241,14 @@ module main =
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
                   ap = __.ap.Read()
-                  def_kinetic = __.def_kinetic.Read()
-                  def_energy = __.def_energy.Read()
-                  def_explosive = __.def_explosive.Read()
-                  def_avg = __.def_avg.Read()
+                  anti_kinetic_defense = __.anti_kinetic_defense.Read()
+                  anti_energy_defense = __.anti_energy_defense.Read()
+                  anti_explosive_defense = __.anti_explosive_defense.Read()
+                  average_defense = __.average_defense.Read()
                   arms_load_limit = __.arms_load_limit.Read()
                   recoil_control = __.recoil_control.Read()
-                  firearms_spec = __.firearms_spec.Read()
-                  melee_spec = __.melee_spec.Read()
+                  firearms_specialization = __.firearms_specialization.Read()
+                  melee_specialization = __.melee_specialization.Read()
                   weight = __.weight.Read()
                   en_load = __.en_load.Read()
                   description = __.description.Read()
@@ -262,14 +262,14 @@ module main =
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
-            member __.def_kinetic = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_kinetic")
-            member __.def_energy = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_energy")
-            member __.def_explosive = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_explosive")
-            member __.def_avg = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_avg")
+            member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
+            member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
+            member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
+            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "average_defense")
             member __.attitude_stability = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attitude_stability")
-            member __.booster_efficiency_adj = OptionalColumn(reader, getOrdinal, reader.GetInt64, "booster_efficiency_adj")
-            member __.generator_output_adj = OptionalColumn(reader, getOrdinal, reader.GetInt64, "generator_output_adj")
-            member __.generator_supply_adj = OptionalColumn(reader, getOrdinal, reader.GetInt64, "generator_supply_adj")
+            member __.booster_efficiency_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt64, "booster_efficiency_adjustment")
+            member __.generator_output_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt64, "generator_output_adjustment")
+            member __.generator_supply_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt64, "generator_supply_adjustment")
             member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
             member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
@@ -280,14 +280,14 @@ module main =
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
                   ap = __.ap.Read()
-                  def_kinetic = __.def_kinetic.Read()
-                  def_energy = __.def_energy.Read()
-                  def_explosive = __.def_explosive.Read()
-                  def_avg = __.def_avg.Read()
+                  anti_kinetic_defense = __.anti_kinetic_defense.Read()
+                  anti_energy_defense = __.anti_energy_defense.Read()
+                  anti_explosive_defense = __.anti_explosive_defense.Read()
+                  average_defense = __.average_defense.Read()
                   attitude_stability = __.attitude_stability.Read()
-                  booster_efficiency_adj = __.booster_efficiency_adj.Read()
-                  generator_output_adj = __.generator_output_adj.Read()
-                  generator_supply_adj = __.generator_supply_adj.Read()
+                  booster_efficiency_adjustment = __.booster_efficiency_adjustment.Read()
+                  generator_output_adjustment = __.generator_output_adjustment.Read()
+                  generator_supply_adjustment = __.generator_supply_adjustment.Read()
                   weight = __.weight.Read()
                   en_load = __.en_load.Read()
                   description = __.description.Read()
@@ -301,10 +301,10 @@ module main =
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
-            member __.def_kinetic = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_kinetic")
-            member __.def_energy = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_energy")
-            member __.def_explosive = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_explosive")
-            member __.def_avg = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_avg")
+            member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
+            member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
+            member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
+            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "average_defense")
             member __.attitude_stability = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attitude_stability")
             member __.system_recovery = OptionalColumn(reader, getOrdinal, reader.GetInt64, "system_recovery")
             member __.scan_distance = OptionalColumn(reader, getOrdinal, reader.GetInt64, "scan_distance")
@@ -319,10 +319,10 @@ module main =
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
                   ap = __.ap.Read()
-                  def_kinetic = __.def_kinetic.Read()
-                  def_energy = __.def_energy.Read()
-                  def_explosive = __.def_explosive.Read()
-                  def_avg = __.def_avg.Read()
+                  anti_kinetic_defense = __.anti_kinetic_defense.Read()
+                  anti_energy_defense = __.anti_energy_defense.Read()
+                  anti_explosive_defense = __.anti_explosive_defense.Read()
+                  average_defense = __.average_defense.Read()
                   attitude_stability = __.attitude_stability.Read()
                   system_recovery = __.system_recovery.Read()
                   scan_distance = __.scan_distance.Read()
@@ -340,10 +340,10 @@ module main =
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
-            member __.def_kinetic = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_kinetic")
-            member __.def_energy = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_energy")
-            member __.def_explosive = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_explosive")
-            member __.def_avg = OptionalColumn(reader, getOrdinal, reader.GetInt64, "def_avg")
+            member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
+            member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
+            member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
+            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "average_defense")
             member __.attitude_stability = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attitude_stability")
             member __.load_limit = OptionalColumn(reader, getOrdinal, reader.GetInt64, "load_limit")
             member __.jump_distance = OptionalColumn(reader, getOrdinal, reader.GetInt64, "jump_distance")
@@ -358,10 +358,10 @@ module main =
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
                   ap = __.ap.Read()
-                  def_kinetic = __.def_kinetic.Read()
-                  def_energy = __.def_energy.Read()
-                  def_explosive = __.def_explosive.Read()
-                  def_avg = __.def_avg.Read()
+                  anti_kinetic_defense = __.anti_kinetic_defense.Read()
+                  anti_energy_defense = __.anti_energy_defense.Read()
+                  anti_explosive_defense = __.anti_explosive_defense.Read()
+                  average_defense = __.average_defense.Read()
                   attitude_stability = __.attitude_stability.Read()
                   load_limit = __.load_limit.Read()
                   jump_distance = __.jump_distance.Read()
@@ -388,7 +388,7 @@ module main =
             member __.qb_reload_ideal_weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "qb_reload_ideal_weight")
             member __.ab_thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ab_thrust")
             member __.ab_en_consumption = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ab_en_consumption")
-            member __.melee_atk_thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_atk_thrust")
+            member __.melee_attack_thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_attack_thrust")
             member __.melee_atk_en_consumption = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_atk_en_consumption")
             member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
             member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
@@ -409,7 +409,7 @@ module main =
                   qb_reload_ideal_weight = __.qb_reload_ideal_weight.Read()
                   ab_thrust = __.ab_thrust.Read()
                   ab_en_consumption = __.ab_en_consumption.Read()
-                  melee_atk_thrust = __.melee_atk_thrust.Read()
+                  melee_attack_thrust = __.melee_attack_thrust.Read()
                   melee_atk_en_consumption = __.melee_atk_en_consumption.Read()
                   weight = __.weight.Read()
                   en_load = __.en_load.Read()
@@ -493,11 +493,11 @@ module main =
             member __.attack_power_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attack_power_multiplier")
             member __.impact = OptionalColumn(reader, getOrdinal, reader.GetInt64, "impact")
             member __.impact_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt64, "impact_multiplier")
-            member __.accum_impact = OptionalColumn(reader, getOrdinal, reader.GetInt64, "accum_impact")
-            member __.accum_impact_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt64, "accum_impact_multiplier")
+            member __.accumulative_impact = OptionalColumn(reader, getOrdinal, reader.GetInt64, "accumulative_impact")
+            member __.accumulative_impact_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt64, "accumulative_impact_multiplier")
             member __.blast_radius = OptionalColumn(reader, getOrdinal, reader.GetInt64, "blast_radius")
-            member __.atk_heat_buildup = OptionalColumn(reader, getOrdinal, reader.GetInt64, "atk_heat_buildup")
-            member __.direct_hit_adj = OptionalColumn(reader, getOrdinal, reader.GetInt64, "direct_hit_adj")
+            member __.atk_heat_build_up = OptionalColumn(reader, getOrdinal, reader.GetInt64, "atk_heat_build_up")
+            member __.direct_hit_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt64, "direct_hit_adjustment")
             member __.recoil = OptionalColumn(reader, getOrdinal, reader.GetInt64, "recoil")
             member __.effective_range = OptionalColumn(reader, getOrdinal, reader.GetInt64, "effective_range")
             member __.range_limt = OptionalColumn(reader, getOrdinal, reader.GetInt64, "range_limt")
@@ -505,7 +505,7 @@ module main =
             member __.total_rounds = OptionalColumn(reader, getOrdinal, reader.GetInt64, "total_rounds")
             member __.reload = OptionalColumn(reader, getOrdinal, reader.GetDouble, "reload")
             member __.cooling = OptionalColumn(reader, getOrdinal, reader.GetInt64, "cooling")
-            member __.ammo_cost = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ammo_cost")
+            member __.ammunition_cost = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ammunition_cost")
             member __.consecutive_hits = OptionalColumn(reader, getOrdinal, reader.GetInt64, "consecutive_hits")
             member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
             member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
@@ -522,11 +522,11 @@ module main =
                   attack_power_multiplier = __.attack_power_multiplier.Read()
                   impact = __.impact.Read()
                   impact_multiplier = __.impact_multiplier.Read()
-                  accum_impact = __.accum_impact.Read()
-                  accum_impact_multiplier = __.accum_impact_multiplier.Read()
+                  accumulative_impact = __.accumulative_impact.Read()
+                  accumulative_impact_multiplier = __.accumulative_impact_multiplier.Read()
                   blast_radius = __.blast_radius.Read()
-                  atk_heat_buildup = __.atk_heat_buildup.Read()
-                  direct_hit_adj = __.direct_hit_adj.Read()
+                  atk_heat_build_up = __.atk_heat_build_up.Read()
+                  direct_hit_adjustment = __.direct_hit_adjustment.Read()
                   recoil = __.recoil.Read()
                   effective_range = __.effective_range.Read()
                   range_limt = __.range_limt.Read()
@@ -534,7 +534,7 @@ module main =
                   total_rounds = __.total_rounds.Read()
                   reload = __.reload.Read()
                   cooling = __.cooling.Read()
-                  ammo_cost = __.ammo_cost.Read()
+                  ammunition_cost = __.ammunition_cost.Read()
                   consecutive_hits = __.consecutive_hits.Read()
                   weight = __.weight.Read()
                   en_load = __.en_load.Read()

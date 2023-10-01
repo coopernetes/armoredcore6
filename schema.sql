@@ -79,7 +79,7 @@ parts_frame_legs (
 );
 
 CREATE TABLE IF NOT EXISTS
-parts_internal_booster (
+parts_internal_boosters (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
     manufacturer TEXT,
@@ -128,6 +128,37 @@ parts_internal_generator (
     supply_recovery INTEGER,
     post_recovery_en_supply INTEGER,
     energy_firearm_spec INTEGER,
+    weight INTEGER,
+    en_load INTEGER,
+    description TEXT,
+    image BLOB
+);
+
+CREATE TABLE IF NOT EXISTS
+parts_weapon (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    slot TEXT,
+    name TEXT,
+    part_type TEXT,
+    manufacturer TEXT,
+    attack_power INTEGER,
+    attack_power_multiplier INTEGER,
+    impact INTEGER,
+    impact_multiplier INTEGER,
+    accum_impact INTEGER,
+    accum_impact_multiplier INTEGER,
+    blast_radius INTEGER,
+    atk_heat_buildup INTEGER,
+    direct_hit_adj INTEGER,
+    recoil INTEGER,
+    effective_range INTEGER,
+    range_limt INTEGER,
+    rapid_fire REAL,
+    total_rounds INTEGER,
+    reload REAL,
+    cooling INTEGER,
+    ammo_cost INTEGER,
+    consecutive_hits INTEGER,
     weight INTEGER,
     en_load INTEGER,
     description TEXT,

@@ -1,17 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
+    <Compile Include="DatabaseTypes.fs">
+      <Visible>False</Visible>
+    </Compile>
     <Compile Include="Program.fs" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="6.3.0" />
-    <PackageReference Include="SQLProvider" Version="1.3.11" />
+    <PackageReference Include="SqlHydra.Query" Version="2.1.0" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>
-
+  <Target Name="SqlHydra" BeforeTargets="Clean">
+    <Exec Command="dotnet sqlhydra sqlite" />
+  </Target>
 </Project>

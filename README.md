@@ -4,9 +4,10 @@ SQLite database for Armored Core 6 parts &amp; stats
 ## Usage
 
 TODO:
+- [x] Create the database and tables
 - [ ] Scrape the wikidot pages for the data and store in memory
-- [ ] Create the database and tables
 - [ ] Write the data to the database
+- [ ] Expand columns to include all stats
 - [ ] Create a simple web interface to query the database
 - [ ] Create a build randomizer that will pick a valid build using the stats in the database
 

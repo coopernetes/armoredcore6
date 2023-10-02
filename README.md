@@ -27,7 +27,7 @@ To re-initialize the database, run `./manage-db.sh clean` or delete the file the
 - [x] Scrape the wikidot pages for the data and store in memory
     - [x] All frame parts (head, core, arms, legs)
     - [x] All internal parts (FCS, generator, booster)
-    - [ ] All weapons
+    - [x] All weapons
     - [ ] Core expansions
 - [x] Write the data to the database
 - [ ] Expand columns to include all stats

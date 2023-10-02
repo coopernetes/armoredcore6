@@ -223,7 +223,96 @@ let ToGeneratorParts (rows : list<list<string>>) : seq<main.parts_internal_gener
     })
 
 let ToWeaponParts (rows : list<list<string>>) : seq<main.parts_weapon> =
-    []
+    // Incomplete data 
+    //  http://armoredcore6.wikidot.com/weapon:hml-g2
+    //  http://armoredcore6.wikidot.com/weapon:44-091-jvln-beta
+    let exclude = [
+        "45-091 JVLN BETA"
+        "HML-G2/P19 MLT-04"
+    ]
+    rows
+    |> Seq.filter (fun tds -> exclude |> Seq.contains tds.[1] |> not)
+    |> Seq.map (fun tds -> 
+        let tryInt str : option<int> =
+            if (str = "" || str = "-") then None else Some(str |> int)
+        let tryDecimal str : option<decimal> =
+            if (str = "" || str = "-") then None else Some(str |> decimal)
+
+        // ascii x
+        // random x-like: ×
+        let splitters = [
+            "x"
+            "×"
+            "s" // thanks to http://armoredcore6.wikidot.com/weapon:bml-g2-p08duo-03
+        ]
+        let atkPowCell = tds.[4]
+        let atkPowParts: string array = 
+            if atkPowCell.Contains("x") then atkPowCell.Split("x")
+            elif atkPowCell.Contains("×") then atkPowCell.Split("×")
+            elif atkPowCell.Contains("s") then atkPowCell.Split("s")
+            else [|atkPowCell|]
+        let attackPower = if atkPowParts.[0] = "" then None else Some(atkPowParts.[0] |> int)
+        let attackPowerMultiplier = 
+            match atkPowParts.Length with
+                | 1 -> None
+                | 2 -> Some(atkPowParts.[1] |> int)
+                | _ -> failwith "Invalid attack power"
+        
+        let impactCell = tds.[5]
+        let impactParts = 
+            if impactCell.Contains("x") then impactCell.Split("x")
+            elif impactCell.Contains("×") then impactCell.Split("×")
+            elif impactCell.Contains("s") then impactCell.Split("s")
+            else [|impactCell|]
+        let impact = tryInt(impactParts.[0])
+        let impactMultiplier = 
+            match impactParts.Length with
+                | 1 -> None
+                | 2 -> Some(impactParts.[1] |> int)
+                | _ -> failwith "Invalid impact"
+        
+        let accumImpactCell = tds.[6]
+        let accumImpactParts = 
+            if accumImpactCell.Contains("x") then accumImpactCell.Split("x")
+            elif accumImpactCell.Contains("×") then accumImpactCell.Split("×")
+            elif accumImpactCell.Contains("s") then accumImpactCell.Split("s")
+            else [|accumImpactCell|]
+        let accumImpact = if accumImpactParts.[0] = "" then None else Some(accumImpactParts.[0] |> int)
+        let accumImpactMultiplier = 
+            match accumImpactParts.Length with
+                | 1 -> None
+                | 2 -> Some(accumImpactParts.[1] |> int)
+                | _ -> failwith "Invalid accumulative impact"
+        {
+            id = 0;
+            slot = tds.[0];
+            name = tds.[1];
+            part_type = tds.[2];
+            manufacturer = tds.[3];
+            attack_power = attackPower;
+            attack_power_multiplier = attackPowerMultiplier;
+            impact = impact;
+            impact_multiplier = impactMultiplier;
+            accumulative_impact = accumImpact;
+            accumulative_impact_multiplier = accumImpactMultiplier;
+            blast_radius = tryInt(tds.[7]);
+            atk_heat_build_up = tryInt(tds.[8]);
+            direct_hit_adjustment = tryInt(tds.[9]);
+            recoil = tryInt(tds.[10]);
+            effective_range = tryInt(tds.[11]);
+            range_limt = tryInt(tds.[12]);
+            rapid_fire = tryDecimal(tds.[13])
+            total_rounds = tryInt(tds.[14]);
+            reload = tryDecimal(tds.[15])
+            cooling = tryInt(tds.[16]);
+            ammunition_cost = tryInt(tds.[17]);
+            consecutive_hits = tryInt(tds.[18]);
+            weight = tds.[19] |> int;
+            en_load = tds.[20] |> int;
+            description = tds.[21];
+            image = None
+        }
+    )
 
 let ToCoreExpansions (rows : list<list<string>>) : seq<main.parts_weapon> =
     []
@@ -259,6 +348,50 @@ let main args =
     printfn "result: %A" (String.Join("\n", task.Result))
     
     printfn "Starting scrape"
+    printfn "Weapon parts"
+    printfn "===================="
+    let weaponParts1 =
+        buildUrl "/weapon"
+        |> pageContent
+        |> TableContentToRowList
+        |> ToWeaponParts
+        |> Seq.toList
+
+    let weaponParts2 =
+        buildUrl "/weapon/p/2"
+        |> pageContent
+        |> TableContentToRowList
+        |> ToWeaponParts
+        |> Seq.toList
+    let weaponParts3 =
+        buildUrl "/weapon/p/3"
+        |> pageContent
+        |> TableContentToRowList
+        |> ToWeaponParts
+        |> Seq.toList
+    let weaponParts4 =
+        buildUrl "/weapon/p/4"
+        |> pageContent
+        |> TableContentToRowList
+        |> ToWeaponParts
+        |> Seq.toList
+
+    let weaponParts = 
+        weaponParts1
+        |> List.append weaponParts2 
+        |> List.append weaponParts3 
+        |> List.append weaponParts4
+
+    for part in weaponParts do
+        let result = 
+            insertTask (Create openContext) {
+                for p in main.parts_weapon do
+                entity part
+                getId p.id
+            }
+        printfn $"- inserted {result.Result}, part {part.name}"
+
+    printfn ""
     printfn "(FRAME) Head parts"
     printfn "===================="
     let headParts1 =
@@ -287,6 +420,7 @@ let main args =
             }
         printfn $"- inserted {result.Result}, part {part.name}"
 
+    printfn ""
     printfn "(FRAME) Core parts"
     printfn "===================="
     let coreParts =
@@ -305,6 +439,7 @@ let main args =
             }
         printfn $"- inserted {result.Result}, part {part.name}"
     
+    printfn ""
     printfn "(FRAME) Arm parts"
     printfn "===================="
     let armParts =
@@ -323,6 +458,7 @@ let main args =
             }
         printfn $"- inserted {result.Result}, part {part.name}"
 
+    printfn ""
     printfn "(FRAME) Leg parts"
     printfn "===================="
     let legParts1 =
@@ -350,6 +486,7 @@ let main args =
             }
         printfn $"- inserted {result.Result}, part {part.name}"
 
+    printfn ""
     printfn "(INTERNAL) Booster parts"
     printfn "===================="
     let boosterParts =
@@ -368,6 +505,7 @@ let main args =
             }
         printfn $"- inserted {result.Result}, part {part.name}"
 
+    printfn ""
     printfn "(INTERNAL) FCS parts"
     printfn "===================="
     let fcsParts =
@@ -386,6 +524,7 @@ let main args =
             }
         printfn $"- inserted {result.Result}, part {part.name}"
 
+    printfn ""
     printfn "(INTERNAL) Generator parts"
     printfn "===================="
     let generatorParts =

@@ -99,6 +99,7 @@ module main =
     type parts_frame_legs =
         { id: int64
           name: string
+          part_type: string
           manufacturer: string
           ap: int
           anti_kinetic_defense: int
@@ -107,8 +108,8 @@ module main =
           average_defense: decimal
           attitude_stability: int
           load_limit: int
-          jump_distance: int
-          jump_height: int
+          jump_distance: Option<int>
+          jump_height: Option<int>
           weight: int
           en_load: int
           description: string
@@ -145,11 +146,11 @@ module main =
         { id: int64
           name: string
           manufacturer: string
-          close_assist: int
-          medium_assist: int
-          long_assist: int
-          avg_assist: int
-          missile_correction: int
+          close_range_assist: int
+          medium_range_assist: int
+          long_range_assist: int
+          average_assist: int
+          missile_lock_correction: int
           multi_lock_correction: int
           weight: int
           en_load: int
@@ -338,6 +339,7 @@ module main =
         type parts_frame_legsReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
+            member __.part_type = RequiredColumn(reader, getOrdinal, reader.GetString, "part_type")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt32, "ap")
             member __.anti_kinetic_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_kinetic_defense")
@@ -346,8 +348,8 @@ module main =
             member __.average_defense = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "average_defense")
             member __.attitude_stability = RequiredColumn(reader, getOrdinal, reader.GetInt32, "attitude_stability")
             member __.load_limit = RequiredColumn(reader, getOrdinal, reader.GetInt32, "load_limit")
-            member __.jump_distance = RequiredColumn(reader, getOrdinal, reader.GetInt32, "jump_distance")
-            member __.jump_height = RequiredColumn(reader, getOrdinal, reader.GetInt32, "jump_height")
+            member __.jump_distance = OptionalColumn(reader, getOrdinal, reader.GetInt32, "jump_distance")
+            member __.jump_height = OptionalColumn(reader, getOrdinal, reader.GetInt32, "jump_height")
             member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "weight")
             member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
@@ -356,6 +358,7 @@ module main =
             member __.Read() =
                 { parts_frame_legs.id = __.id.Read()
                   name = __.name.Read()
+                  part_type = __.part_type.Read()
                   manufacturer = __.manufacturer.Read()
                   ap = __.ap.Read()
                   anti_kinetic_defense = __.anti_kinetic_defense.Read()
@@ -423,11 +426,11 @@ module main =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.close_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "close_assist")
-            member __.medium_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "medium_assist")
-            member __.long_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "long_assist")
-            member __.avg_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "avg_assist")
-            member __.missile_correction = RequiredColumn(reader, getOrdinal, reader.GetInt32, "missile_correction")
+            member __.close_range_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "close_range_assist")
+            member __.medium_range_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "medium_range_assist")
+            member __.long_range_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "long_range_assist")
+            member __.average_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "average_assist")
+            member __.missile_lock_correction = RequiredColumn(reader, getOrdinal, reader.GetInt32, "missile_lock_correction")
             member __.multi_lock_correction = RequiredColumn(reader, getOrdinal, reader.GetInt32, "multi_lock_correction")
             member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "weight")
             member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_load")
@@ -438,11 +441,11 @@ module main =
                 { parts_internal_fcs.id = __.id.Read()
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
-                  close_assist = __.close_assist.Read()
-                  medium_assist = __.medium_assist.Read()
-                  long_assist = __.long_assist.Read()
-                  avg_assist = __.avg_assist.Read()
-                  missile_correction = __.missile_correction.Read()
+                  close_range_assist = __.close_range_assist.Read()
+                  medium_range_assist = __.medium_range_assist.Read()
+                  long_range_assist = __.long_range_assist.Read()
+                  average_assist = __.average_assist.Read()
+                  missile_lock_correction = __.missile_lock_correction.Read()
                   multi_lock_correction = __.multi_lock_correction.Read()
                   weight = __.weight.Read()
                   en_load = __.en_load.Read()
@@ -577,7 +580,7 @@ type HydraReader(reader: System.Data.Common.DbDataReader) =
     let lazymainparts_frame_arms = lazy (main.Readers.parts_frame_armsReader (reader, buildGetOrdinal 16))
     let lazymainparts_frame_core = lazy (main.Readers.parts_frame_coreReader (reader, buildGetOrdinal 16))
     let lazymainparts_frame_head = lazy (main.Readers.parts_frame_headReader (reader, buildGetOrdinal 16))
-    let lazymainparts_frame_legs = lazy (main.Readers.parts_frame_legsReader (reader, buildGetOrdinal 16))
+    let lazymainparts_frame_legs = lazy (main.Readers.parts_frame_legsReader (reader, buildGetOrdinal 17))
     let lazymainparts_internal_boosters = lazy (main.Readers.parts_internal_boostersReader (reader, buildGetOrdinal 19))
     let lazymainparts_internal_fcs = lazy (main.Readers.parts_internal_fcsReader (reader, buildGetOrdinal 13))
     let lazymainparts_internal_generator = lazy (main.Readers.parts_internal_generatorReader (reader, buildGetOrdinal 12))

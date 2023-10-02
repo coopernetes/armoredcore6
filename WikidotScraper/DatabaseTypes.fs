@@ -41,7 +41,7 @@ module main =
           anti_kinetic_defense: Option<int64>
           anti_energy_defense: Option<int64>
           anti_explosive_defense: Option<int64>
-          average_defense: Option<int64>
+          average_defense: Option<double>
           arms_load_limit: Option<int64>
           recoil_control: Option<int64>
           firearms_specialization: Option<int64>
@@ -62,7 +62,7 @@ module main =
           anti_kinetic_defense: Option<int64>
           anti_energy_defense: Option<int64>
           anti_explosive_defense: Option<int64>
-          average_defense: Option<int64>
+          average_defense: Option<double>
           attitude_stability: Option<int64>
           booster_efficiency_adjustment: Option<int64>
           generator_output_adjustment: Option<int64>
@@ -83,7 +83,7 @@ module main =
           anti_kinetic_defense: Option<int64>
           anti_energy_defense: Option<int64>
           anti_explosive_defense: Option<int64>
-          average_defense: Option<int64>
+          average_defense: Option<double>
           attitude_stability: Option<int64>
           system_recovery: Option<int64>
           scan_distance: Option<int64>
@@ -104,7 +104,7 @@ module main =
           anti_kinetic_defense: Option<int64>
           anti_energy_defense: Option<int64>
           anti_explosive_defense: Option<int64>
-          average_defense: Option<int64>
+          average_defense: Option<double>
           attitude_stability: Option<int64>
           load_limit: Option<int64>
           jump_distance: Option<int64>
@@ -226,7 +226,7 @@ module main =
             member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
             member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
             member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
-            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "average_defense")
+            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetDouble, "average_defense")
             member __.arms_load_limit = OptionalColumn(reader, getOrdinal, reader.GetInt64, "arms_load_limit")
             member __.recoil_control = OptionalColumn(reader, getOrdinal, reader.GetInt64, "recoil_control")
             member __.firearms_specialization = OptionalColumn(reader, getOrdinal, reader.GetInt64, "firearms_specialization")
@@ -265,7 +265,7 @@ module main =
             member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
             member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
             member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
-            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "average_defense")
+            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetDouble, "average_defense")
             member __.attitude_stability = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attitude_stability")
             member __.booster_efficiency_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt64, "booster_efficiency_adjustment")
             member __.generator_output_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt64, "generator_output_adjustment")
@@ -304,7 +304,7 @@ module main =
             member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
             member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
             member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
-            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "average_defense")
+            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetDouble, "average_defense")
             member __.attitude_stability = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attitude_stability")
             member __.system_recovery = OptionalColumn(reader, getOrdinal, reader.GetInt64, "system_recovery")
             member __.scan_distance = OptionalColumn(reader, getOrdinal, reader.GetInt64, "scan_distance")
@@ -343,7 +343,7 @@ module main =
             member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
             member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
             member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
-            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "average_defense")
+            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetDouble, "average_defense")
             member __.attitude_stability = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attitude_stability")
             member __.load_limit = OptionalColumn(reader, getOrdinal, reader.GetInt64, "load_limit")
             member __.jump_distance = OptionalColumn(reader, getOrdinal, reader.GetInt64, "jump_distance")

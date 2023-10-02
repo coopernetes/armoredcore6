@@ -230,6 +230,23 @@ let ToWeaponParts (rows : list<list<string>>) : seq<main.parts_weapon> =
         "45-091 JVLN BETA"
         "HML-G2/P19 MLT-04"
     ]
+
+
+    // "45-091 JVLN BETA"
+    // atk pow = 791
+    // impact = 717
+    // accum imp = 563
+    // blast rad = 20
+    // direct hit adj = 165
+    // guidance = 360
+    // effective range = 360
+    // homing active time = 2.4
+    // max lock count = 1
+    // total rounds = 32
+    // reload time = 3.6
+    // ammo cost = 450
+    // weight = 4250
+    // en load = 425
     rows
     |> Seq.filter (fun tds -> exclude |> Seq.contains tds.[1] |> not)
     |> Seq.map (fun tds -> 

@@ -33,6 +33,11 @@ module private DataReaderExtensions =
 
 module main =
     [<CLIMutable>]
+    type parts_core_expansion = { id: int64; name: string }
+
+    let parts_core_expansion = SqlHydra.Query.Table.table<parts_core_expansion>
+
+    [<CLIMutable>]
     type parts_frame_arms =
         { id: int64
           name: string
@@ -179,9 +184,9 @@ module main =
     [<CLIMutable>]
     type parts_weapon =
         { id: int64
-          slot: Option<string>
+          slot: string
           name: string
-          part_type: Option<string>
+          part_type: string
           manufacturer: string
           attack_power: Option<int>
           attack_power_multiplier: Option<int>
@@ -219,6 +224,17 @@ module main =
     let test = SqlHydra.Query.Table.table<test>
 
     module Readers =
+        type parts_core_expansionReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
+            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
+            member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
+
+            member __.Read() =
+                { parts_core_expansion.id = __.id.Read()
+                  name = __.name.Read() }
+
+            member __.ReadIfNotNull() =
+                if __.id.IsNull() then None else Some(__.Read())
+
         type parts_frame_armsReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
@@ -488,9 +504,9 @@ module main =
 
         type parts_weaponReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
-            member __.slot = OptionalColumn(reader, getOrdinal, reader.GetString, "slot")
+            member __.slot = RequiredColumn(reader, getOrdinal, reader.GetString, "slot")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
-            member __.part_type = OptionalColumn(reader, getOrdinal, reader.GetString, "part_type")
+            member __.part_type = RequiredColumn(reader, getOrdinal, reader.GetString, "part_type")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.attack_power = OptionalColumn(reader, getOrdinal, reader.GetInt32, "attack_power")
             member __.attack_power_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt32, "attack_power_multiplier")
@@ -577,6 +593,7 @@ type HydraReader(reader: System.Data.Common.DbDataReader) =
         accFieldCount <- accFieldCount + fieldCount
         fun col -> dictionary.Item col
         
+    let lazymainparts_core_expansion = lazy (main.Readers.parts_core_expansionReader (reader, buildGetOrdinal 2))
     let lazymainparts_frame_arms = lazy (main.Readers.parts_frame_armsReader (reader, buildGetOrdinal 16))
     let lazymainparts_frame_core = lazy (main.Readers.parts_frame_coreReader (reader, buildGetOrdinal 16))
     let lazymainparts_frame_head = lazy (main.Readers.parts_frame_headReader (reader, buildGetOrdinal 16))
@@ -586,6 +603,7 @@ type HydraReader(reader: System.Data.Common.DbDataReader) =
     let lazymainparts_internal_generator = lazy (main.Readers.parts_internal_generatorReader (reader, buildGetOrdinal 12))
     let lazymainparts_weapon = lazy (main.Readers.parts_weaponReader (reader, buildGetOrdinal 27))
     let lazymaintest = lazy (main.Readers.testReader (reader, buildGetOrdinal 5))
+    member __.``main.parts_core_expansion`` = lazymainparts_core_expansion.Value
     member __.``main.parts_frame_arms`` = lazymainparts_frame_arms.Value
     member __.``main.parts_frame_core`` = lazymainparts_frame_core.Value
     member __.``main.parts_frame_head`` = lazymainparts_frame_head.Value
@@ -599,6 +617,8 @@ type HydraReader(reader: System.Data.Common.DbDataReader) =
 
     member private __.GetReaderByName(entity: string, isOption: bool) =
         match entity, isOption with
+        | "main.parts_core_expansion", false -> __.``main.parts_core_expansion``.Read >> box
+        | "main.parts_core_expansion", true -> __.``main.parts_core_expansion``.ReadIfNotNull >> box
         | "main.parts_frame_arms", false -> __.``main.parts_frame_arms``.Read >> box
         | "main.parts_frame_arms", true -> __.``main.parts_frame_arms``.ReadIfNotNull >> box
         | "main.parts_frame_core", false -> __.``main.parts_frame_core``.Read >> box

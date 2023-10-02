@@ -225,6 +225,10 @@ let ToGeneratorParts (rows : list<list<string>>) : seq<main.parts_internal_gener
 let ToWeaponParts (rows : list<list<string>>) : seq<main.parts_weapon> =
     []
 
+let ToCoreExpansions (rows : list<list<string>>) : seq<main.parts_weapon> =
+    []
+
+
 /// Opens a connection and creates a QueryContext that will generate SQL Server dialect queries
 let openContext() = 
     let compiler = SqlKata.Compilers.SqliteCompiler()

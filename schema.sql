@@ -165,3 +165,9 @@ parts_weapon (
     description TEXT NOT NULL,
     image BLOB
 );
+
+CREATE TABLE IF NOT EXISTS
+parts_core_expansion (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);

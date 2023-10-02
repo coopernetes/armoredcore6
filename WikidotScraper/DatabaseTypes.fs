@@ -37,17 +37,17 @@ module main =
         { id: int64
           name: string
           manufacturer: string
-          ap: int64
-          anti_kinetic_defense: Option<int64>
-          anti_energy_defense: Option<int64>
-          anti_explosive_defense: Option<int64>
-          average_defense: Option<double>
-          arms_load_limit: Option<int64>
-          recoil_control: Option<int64>
-          firearms_specialization: Option<int64>
-          melee_specialization: Option<int64>
-          weight: int64
-          en_load: int64
+          ap: int
+          anti_kinetic_defense: int
+          anti_energy_defense: int
+          anti_explosive_defense: int
+          average_defense: decimal
+          arms_load_limit: int
+          recoil_control: int
+          firearms_specialization: int
+          melee_specialization: int
+          weight: int
+          en_load: int
           description: string
           image: Option<byte []> }
 
@@ -58,17 +58,17 @@ module main =
         { id: int64
           name: string
           manufacturer: string
-          ap: int64
-          anti_kinetic_defense: Option<int64>
-          anti_energy_defense: Option<int64>
-          anti_explosive_defense: Option<int64>
-          average_defense: Option<double>
-          attitude_stability: Option<int64>
-          booster_efficiency_adjustment: Option<int64>
-          generator_output_adjustment: Option<int64>
-          generator_supply_adjustment: Option<int64>
-          weight: int64
-          en_load: int64
+          ap: int
+          anti_kinetic_defense: int
+          anti_energy_defense: int
+          anti_explosive_defense: int
+          average_defense: decimal
+          attitude_stability: int
+          booster_efficiency_adjustment: int
+          generator_output_adjustment: int
+          generator_supply_adjustment: int
+          weight: int
+          en_load: int
           description: string
           image: Option<byte []> }
 
@@ -79,17 +79,17 @@ module main =
         { id: int64
           name: string
           manufacturer: string
-          ap: int64
-          anti_kinetic_defense: Option<int64>
-          anti_energy_defense: Option<int64>
-          anti_explosive_defense: Option<int64>
-          average_defense: Option<double>
-          attitude_stability: Option<int64>
-          system_recovery: Option<int64>
-          scan_distance: Option<int64>
-          scan_effect_duration: Option<double>
-          weight: int64
-          en_load: int64
+          ap: int
+          anti_kinetic_defense: int
+          anti_energy_defense: int
+          anti_explosive_defense: int
+          average_defense: decimal
+          attitude_stability: int
+          system_recovery: int
+          scan_distance: int
+          scan_effect_duration: decimal
+          weight: int
+          en_load: int
           description: string
           image: Option<byte []> }
 
@@ -100,17 +100,17 @@ module main =
         { id: int64
           name: string
           manufacturer: string
-          ap: int64
-          anti_kinetic_defense: Option<int64>
-          anti_energy_defense: Option<int64>
-          anti_explosive_defense: Option<int64>
-          average_defense: Option<double>
-          attitude_stability: Option<int64>
-          load_limit: Option<int64>
-          jump_distance: Option<int64>
-          jump_height: Option<int64>
-          weight: int64
-          en_load: int64
+          ap: int
+          anti_kinetic_defense: int
+          anti_energy_defense: int
+          anti_explosive_defense: int
+          average_defense: decimal
+          attitude_stability: int
+          load_limit: int
+          jump_distance: int
+          jump_height: int
+          weight: int
+          en_load: int
           description: string
           image: Option<byte []> }
 
@@ -121,20 +121,20 @@ module main =
         { id: int64
           name: string
           manufacturer: string
-          thrust: Option<int64>
-          upward_thrust: Option<int64>
-          upward_en_consumption: Option<int64>
-          qb_thrust: Option<int64>
-          qb_jet_duration: Option<double>
-          qb_en_consumption: Option<int64>
-          qb_reload_time: Option<double>
-          qb_reload_ideal_weight: int64
-          ab_thrust: Option<int64>
-          ab_en_consumption: Option<int64>
-          melee_attack_thrust: Option<int64>
-          melee_atk_en_consumption: Option<int64>
-          weight: int64
-          en_load: int64
+          thrust: int
+          upward_thrust: int
+          upward_en_consumption: int
+          qb_thrust: int
+          qb_jet_duration: decimal
+          qb_en_consumption: int
+          qb_reload_time: decimal
+          qb_reload_ideal_weight: int
+          ab_thrust: int
+          ab_en_consumption: int
+          melee_attack_thrust: int
+          melee_atk_en_consumption: int
+          weight: int
+          en_load: int
           description: string
           image: Option<byte []> }
 
@@ -145,14 +145,14 @@ module main =
         { id: int64
           name: string
           manufacturer: string
-          close_assist: Option<int64>
-          medium_assist: Option<int64>
-          long_assist: Option<int64>
-          avg_assist: Option<int64>
-          missile_correction: Option<int64>
-          multi_lock_correction: Option<int64>
-          weight: int64
-          en_load: int64
+          close_assist: int
+          medium_assist: int
+          long_assist: int
+          avg_assist: int
+          missile_correction: int
+          multi_lock_correction: int
+          weight: int
+          en_load: int
           description: string
           image: Option<byte []> }
 
@@ -163,13 +163,13 @@ module main =
         { id: int64
           name: string
           manufacturer: string
-          en_capacity: Option<int64>
-          en_recharge: Option<int64>
-          supply_recovery: Option<int64>
-          post_recovery_en_supply: Option<int64>
-          energy_firearm_spec: Option<int64>
-          weight: int64
-          en_load: int64
+          en_capacity: int
+          en_recharge: int
+          supply_recovery: int
+          post_recovery_en_supply: int
+          energy_firearm_spec: int
+          weight: int
+          en_load: int
           description: string
           image: Option<byte []> }
 
@@ -182,26 +182,26 @@ module main =
           name: string
           part_type: Option<string>
           manufacturer: string
-          attack_power: Option<int64>
-          attack_power_multiplier: Option<int64>
-          impact: Option<int64>
-          impact_multiplier: Option<int64>
-          accumulative_impact: Option<int64>
-          accumulative_impact_multiplier: Option<int64>
-          blast_radius: Option<int64>
-          atk_heat_build_up: Option<int64>
-          direct_hit_adjustment: Option<int64>
-          recoil: Option<int64>
-          effective_range: Option<int64>
-          range_limt: Option<int64>
-          rapid_fire: Option<double>
-          total_rounds: Option<int64>
-          reload: Option<double>
-          cooling: Option<int64>
-          ammunition_cost: Option<int64>
-          consecutive_hits: Option<int64>
-          weight: int64
-          en_load: int64
+          attack_power: Option<int>
+          attack_power_multiplier: Option<int>
+          impact: Option<int>
+          impact_multiplier: Option<int>
+          accumulative_impact: Option<int>
+          accumulative_impact_multiplier: Option<int>
+          blast_radius: Option<int>
+          atk_heat_build_up: Option<int>
+          direct_hit_adjustment: Option<int>
+          recoil: Option<int>
+          effective_range: Option<int>
+          range_limt: Option<int>
+          rapid_fire: Option<decimal>
+          total_rounds: Option<int>
+          reload: Option<decimal>
+          cooling: Option<int>
+          ammunition_cost: Option<int>
+          consecutive_hits: Option<int>
+          weight: int
+          en_load: int
           description: string
           image: Option<byte []> }
 
@@ -222,17 +222,17 @@ module main =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
-            member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
-            member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
-            member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
-            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetDouble, "average_defense")
-            member __.arms_load_limit = OptionalColumn(reader, getOrdinal, reader.GetInt64, "arms_load_limit")
-            member __.recoil_control = OptionalColumn(reader, getOrdinal, reader.GetInt64, "recoil_control")
-            member __.firearms_specialization = OptionalColumn(reader, getOrdinal, reader.GetInt64, "firearms_specialization")
-            member __.melee_specialization = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_specialization")
-            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt32, "ap")
+            member __.anti_kinetic_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_kinetic_defense")
+            member __.anti_energy_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_energy_defense")
+            member __.anti_explosive_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_explosive_defense")
+            member __.average_defense = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "average_defense")
+            member __.arms_load_limit = RequiredColumn(reader, getOrdinal, reader.GetInt32, "arms_load_limit")
+            member __.recoil_control = RequiredColumn(reader, getOrdinal, reader.GetInt32, "recoil_control")
+            member __.firearms_specialization = RequiredColumn(reader, getOrdinal, reader.GetInt32, "firearms_specialization")
+            member __.melee_specialization = RequiredColumn(reader, getOrdinal, reader.GetInt32, "melee_specialization")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
@@ -261,17 +261,17 @@ module main =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
-            member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
-            member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
-            member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
-            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetDouble, "average_defense")
-            member __.attitude_stability = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attitude_stability")
-            member __.booster_efficiency_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt64, "booster_efficiency_adjustment")
-            member __.generator_output_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt64, "generator_output_adjustment")
-            member __.generator_supply_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt64, "generator_supply_adjustment")
-            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt32, "ap")
+            member __.anti_kinetic_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_kinetic_defense")
+            member __.anti_energy_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_energy_defense")
+            member __.anti_explosive_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_explosive_defense")
+            member __.average_defense = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "average_defense")
+            member __.attitude_stability = RequiredColumn(reader, getOrdinal, reader.GetInt32, "attitude_stability")
+            member __.booster_efficiency_adjustment = RequiredColumn(reader, getOrdinal, reader.GetInt32, "booster_efficiency_adjustment")
+            member __.generator_output_adjustment = RequiredColumn(reader, getOrdinal, reader.GetInt32, "generator_output_adjustment")
+            member __.generator_supply_adjustment = RequiredColumn(reader, getOrdinal, reader.GetInt32, "generator_supply_adjustment")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
@@ -300,17 +300,17 @@ module main =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
-            member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
-            member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
-            member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
-            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetDouble, "average_defense")
-            member __.attitude_stability = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attitude_stability")
-            member __.system_recovery = OptionalColumn(reader, getOrdinal, reader.GetInt64, "system_recovery")
-            member __.scan_distance = OptionalColumn(reader, getOrdinal, reader.GetInt64, "scan_distance")
-            member __.scan_effect_duration = OptionalColumn(reader, getOrdinal, reader.GetDouble, "scan_effect_duration")
-            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt32, "ap")
+            member __.anti_kinetic_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_kinetic_defense")
+            member __.anti_energy_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_energy_defense")
+            member __.anti_explosive_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_explosive_defense")
+            member __.average_defense = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "average_defense")
+            member __.attitude_stability = RequiredColumn(reader, getOrdinal, reader.GetInt32, "attitude_stability")
+            member __.system_recovery = RequiredColumn(reader, getOrdinal, reader.GetInt32, "system_recovery")
+            member __.scan_distance = RequiredColumn(reader, getOrdinal, reader.GetInt32, "scan_distance")
+            member __.scan_effect_duration = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "scan_effect_duration")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
@@ -339,17 +339,17 @@ module main =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt64, "ap")
-            member __.anti_kinetic_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_kinetic_defense")
-            member __.anti_energy_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_energy_defense")
-            member __.anti_explosive_defense = OptionalColumn(reader, getOrdinal, reader.GetInt64, "anti_explosive_defense")
-            member __.average_defense = OptionalColumn(reader, getOrdinal, reader.GetDouble, "average_defense")
-            member __.attitude_stability = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attitude_stability")
-            member __.load_limit = OptionalColumn(reader, getOrdinal, reader.GetInt64, "load_limit")
-            member __.jump_distance = OptionalColumn(reader, getOrdinal, reader.GetInt64, "jump_distance")
-            member __.jump_height = OptionalColumn(reader, getOrdinal, reader.GetInt64, "jump_height")
-            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt32, "ap")
+            member __.anti_kinetic_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_kinetic_defense")
+            member __.anti_energy_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_energy_defense")
+            member __.anti_explosive_defense = RequiredColumn(reader, getOrdinal, reader.GetInt32, "anti_explosive_defense")
+            member __.average_defense = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "average_defense")
+            member __.attitude_stability = RequiredColumn(reader, getOrdinal, reader.GetInt32, "attitude_stability")
+            member __.load_limit = RequiredColumn(reader, getOrdinal, reader.GetInt32, "load_limit")
+            member __.jump_distance = RequiredColumn(reader, getOrdinal, reader.GetInt32, "jump_distance")
+            member __.jump_height = RequiredColumn(reader, getOrdinal, reader.GetInt32, "jump_height")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
@@ -378,20 +378,20 @@ module main =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "thrust")
-            member __.upward_thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "upward_thrust")
-            member __.upward_en_consumption = OptionalColumn(reader, getOrdinal, reader.GetInt64, "upward_en_consumption")
-            member __.qb_thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "qb_thrust")
-            member __.qb_jet_duration = OptionalColumn(reader, getOrdinal, reader.GetDouble, "qb_jet_duration")
-            member __.qb_en_consumption = OptionalColumn(reader, getOrdinal, reader.GetInt64, "qb_en_consumption")
-            member __.qb_reload_time = OptionalColumn(reader, getOrdinal, reader.GetDouble, "qb_reload_time")
-            member __.qb_reload_ideal_weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "qb_reload_ideal_weight")
-            member __.ab_thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ab_thrust")
-            member __.ab_en_consumption = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ab_en_consumption")
-            member __.melee_attack_thrust = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_attack_thrust")
-            member __.melee_atk_en_consumption = OptionalColumn(reader, getOrdinal, reader.GetInt64, "melee_atk_en_consumption")
-            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.thrust = RequiredColumn(reader, getOrdinal, reader.GetInt32, "thrust")
+            member __.upward_thrust = RequiredColumn(reader, getOrdinal, reader.GetInt32, "upward_thrust")
+            member __.upward_en_consumption = RequiredColumn(reader, getOrdinal, reader.GetInt32, "upward_en_consumption")
+            member __.qb_thrust = RequiredColumn(reader, getOrdinal, reader.GetInt32, "qb_thrust")
+            member __.qb_jet_duration = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "qb_jet_duration")
+            member __.qb_en_consumption = RequiredColumn(reader, getOrdinal, reader.GetInt32, "qb_en_consumption")
+            member __.qb_reload_time = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "qb_reload_time")
+            member __.qb_reload_ideal_weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "qb_reload_ideal_weight")
+            member __.ab_thrust = RequiredColumn(reader, getOrdinal, reader.GetInt32, "ab_thrust")
+            member __.ab_en_consumption = RequiredColumn(reader, getOrdinal, reader.GetInt32, "ab_en_consumption")
+            member __.melee_attack_thrust = RequiredColumn(reader, getOrdinal, reader.GetInt32, "melee_attack_thrust")
+            member __.melee_atk_en_consumption = RequiredColumn(reader, getOrdinal, reader.GetInt32, "melee_atk_en_consumption")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
@@ -423,14 +423,14 @@ module main =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.close_assist = OptionalColumn(reader, getOrdinal, reader.GetInt64, "close_assist")
-            member __.medium_assist = OptionalColumn(reader, getOrdinal, reader.GetInt64, "medium_assist")
-            member __.long_assist = OptionalColumn(reader, getOrdinal, reader.GetInt64, "long_assist")
-            member __.avg_assist = OptionalColumn(reader, getOrdinal, reader.GetInt64, "avg_assist")
-            member __.missile_correction = OptionalColumn(reader, getOrdinal, reader.GetInt64, "missile_correction")
-            member __.multi_lock_correction = OptionalColumn(reader, getOrdinal, reader.GetInt64, "multi_lock_correction")
-            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.close_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "close_assist")
+            member __.medium_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "medium_assist")
+            member __.long_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "long_assist")
+            member __.avg_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "avg_assist")
+            member __.missile_correction = RequiredColumn(reader, getOrdinal, reader.GetInt32, "missile_correction")
+            member __.multi_lock_correction = RequiredColumn(reader, getOrdinal, reader.GetInt32, "multi_lock_correction")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
@@ -456,13 +456,13 @@ module main =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.en_capacity = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_capacity")
-            member __.en_recharge = OptionalColumn(reader, getOrdinal, reader.GetInt64, "en_recharge")
-            member __.supply_recovery = OptionalColumn(reader, getOrdinal, reader.GetInt64, "supply_recovery")
-            member __.post_recovery_en_supply = OptionalColumn(reader, getOrdinal, reader.GetInt64, "post_recovery_en_supply")
-            member __.energy_firearm_spec = OptionalColumn(reader, getOrdinal, reader.GetInt64, "energy_firearm_spec")
-            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.en_capacity = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_capacity")
+            member __.en_recharge = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_recharge")
+            member __.supply_recovery = RequiredColumn(reader, getOrdinal, reader.GetInt32, "supply_recovery")
+            member __.post_recovery_en_supply = RequiredColumn(reader, getOrdinal, reader.GetInt32, "post_recovery_en_supply")
+            member __.energy_firearm_spec = RequiredColumn(reader, getOrdinal, reader.GetInt32, "energy_firearm_spec")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
@@ -489,26 +489,26 @@ module main =
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.part_type = OptionalColumn(reader, getOrdinal, reader.GetString, "part_type")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
-            member __.attack_power = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attack_power")
-            member __.attack_power_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt64, "attack_power_multiplier")
-            member __.impact = OptionalColumn(reader, getOrdinal, reader.GetInt64, "impact")
-            member __.impact_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt64, "impact_multiplier")
-            member __.accumulative_impact = OptionalColumn(reader, getOrdinal, reader.GetInt64, "accumulative_impact")
-            member __.accumulative_impact_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt64, "accumulative_impact_multiplier")
-            member __.blast_radius = OptionalColumn(reader, getOrdinal, reader.GetInt64, "blast_radius")
-            member __.atk_heat_build_up = OptionalColumn(reader, getOrdinal, reader.GetInt64, "atk_heat_build_up")
-            member __.direct_hit_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt64, "direct_hit_adjustment")
-            member __.recoil = OptionalColumn(reader, getOrdinal, reader.GetInt64, "recoil")
-            member __.effective_range = OptionalColumn(reader, getOrdinal, reader.GetInt64, "effective_range")
-            member __.range_limt = OptionalColumn(reader, getOrdinal, reader.GetInt64, "range_limt")
-            member __.rapid_fire = OptionalColumn(reader, getOrdinal, reader.GetDouble, "rapid_fire")
-            member __.total_rounds = OptionalColumn(reader, getOrdinal, reader.GetInt64, "total_rounds")
-            member __.reload = OptionalColumn(reader, getOrdinal, reader.GetDouble, "reload")
-            member __.cooling = OptionalColumn(reader, getOrdinal, reader.GetInt64, "cooling")
-            member __.ammunition_cost = OptionalColumn(reader, getOrdinal, reader.GetInt64, "ammunition_cost")
-            member __.consecutive_hits = OptionalColumn(reader, getOrdinal, reader.GetInt64, "consecutive_hits")
-            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt64, "weight")
-            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt64, "en_load")
+            member __.attack_power = OptionalColumn(reader, getOrdinal, reader.GetInt32, "attack_power")
+            member __.attack_power_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt32, "attack_power_multiplier")
+            member __.impact = OptionalColumn(reader, getOrdinal, reader.GetInt32, "impact")
+            member __.impact_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt32, "impact_multiplier")
+            member __.accumulative_impact = OptionalColumn(reader, getOrdinal, reader.GetInt32, "accumulative_impact")
+            member __.accumulative_impact_multiplier = OptionalColumn(reader, getOrdinal, reader.GetInt32, "accumulative_impact_multiplier")
+            member __.blast_radius = OptionalColumn(reader, getOrdinal, reader.GetInt32, "blast_radius")
+            member __.atk_heat_build_up = OptionalColumn(reader, getOrdinal, reader.GetInt32, "atk_heat_build_up")
+            member __.direct_hit_adjustment = OptionalColumn(reader, getOrdinal, reader.GetInt32, "direct_hit_adjustment")
+            member __.recoil = OptionalColumn(reader, getOrdinal, reader.GetInt32, "recoil")
+            member __.effective_range = OptionalColumn(reader, getOrdinal, reader.GetInt32, "effective_range")
+            member __.range_limt = OptionalColumn(reader, getOrdinal, reader.GetInt32, "range_limt")
+            member __.rapid_fire = OptionalColumn(reader, getOrdinal, reader.GetDecimal, "rapid_fire")
+            member __.total_rounds = OptionalColumn(reader, getOrdinal, reader.GetInt32, "total_rounds")
+            member __.reload = OptionalColumn(reader, getOrdinal, reader.GetDecimal, "reload")
+            member __.cooling = OptionalColumn(reader, getOrdinal, reader.GetInt32, "cooling")
+            member __.ammunition_cost = OptionalColumn(reader, getOrdinal, reader.GetInt32, "ammunition_cost")
+            member __.consecutive_hits = OptionalColumn(reader, getOrdinal, reader.GetInt32, "consecutive_hits")
+            member __.weight = RequiredColumn(reader, getOrdinal, reader.GetInt32, "weight")
+            member __.en_load = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_load")
             member __.description = RequiredColumn(reader, getOrdinal, reader.GetString, "description")
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 

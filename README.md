@@ -2,10 +2,15 @@
 SQLite database for Armored Core 6 parts &amp; stats
 
 ## Usage
+The database is stored in `data/ArmoredCore6.db`. It can be queried using any SQLite client, or the command line tool `sqlite3`. To recreate the database, run `./refresh-db.sh`. This also regenerates the [SqlHydra types](./WikidotScraper/DatabaseTypes.fs).
 
-TODO:
+## TODO
+
 - [x] Create the database and tables
 - [ ] Scrape the wikidot pages for the data and store in memory
+    - [ ] All frame parts (head, core, arms, legs)
+    - [ ] All internal parts (FCS, generator, booster)
+    - [ ] All weapons
 - [ ] Write the data to the database
 - [ ] Expand columns to include all stats
 - [ ] Create a simple web interface to query the database

@@ -40,7 +40,6 @@ let convertRowsToHeadParts (nodes : seq<HtmlNode>) : seq<main.parts_frame_head> 
         nodes
         |> Seq.map (fun x -> x.Descendants "td" |> Seq.toList)
         |> Seq.toList
-    printfn "cells: %A" cells
     printfn "cells length: %A" (cells |> Seq.length)
     
     cells
@@ -48,19 +47,32 @@ let convertRowsToHeadParts (nodes : seq<HtmlNode>) : seq<main.parts_frame_head> 
             id = 0;
             name = tds[0].InnerText();
             manufacturer = tds[1].InnerText();
-            ap = tds[2].InnerText() |> int64;
-            anti_kinetic_defense = Some(tds[3].InnerText() |> int64);
-            anti_energy_defense = Some(tds[4].InnerText() |> int64);
-            anti_explosive_defense = Some(tds[5].InnerText() |> int64);
-            average_defense = Some(tds[6].InnerText() |> double);
-            attitude_stability = Some(tds[7].InnerText() |> int64);
-            system_recovery = Some(tds[8].InnerText() |> int64);
-            scan_distance = Some(tds[9].InnerText() |> int64);
-            scan_effect_duration = Some(tds[10].InnerText() |> double);
-            weight = tds[11].InnerText() |> int64;
-            en_load = tds[12].InnerText() |> int64;
+            ap = tds[2].InnerText() |> int;
+            anti_kinetic_defense = tds[3].InnerText() |> int;
+            anti_energy_defense = tds[4].InnerText() |> int;
+            anti_explosive_defense = tds[5].InnerText() |> int;
+            average_defense = tds[6].InnerText() |> decimal;
+            attitude_stability = tds[7].InnerText() |> int;
+            system_recovery = tds[8].InnerText() |> int;
+            scan_distance = tds[9].InnerText() |> int;
+            scan_effect_duration = tds[10].InnerText() |> decimal;
+            weight = tds[11].InnerText() |> int;
+            en_load = tds[12].InnerText() |> int;
             description = tds[13].InnerText();
-            image = None;
+            image = None
+                // This was generated and is close enough to what I want if images ever do get added
+                // If images exist, I want to download them as base64 encoded bytes and store in the database
+                // (tds[14].Descendants "img"
+                //         |> Seq.map (fun x -> x.TryGetAttribute("src"))
+                //         |> Seq.filter (fun x -> x.IsSome)
+                //         |> Option.map (fun (src: HtmlAttribute) -> src.Value())
+                //         |> Option.map (fun url -> Http.Request(url, httpMethod = "GET"))
+                //         |> Option.filter (fun (response: HttpResponse) -> response.StatusCode = 200)
+                //         |> Option.map (fun (response: HttpResponse) -> response.Body)
+                //         |> Option.map (fun (body: HttpResponseBody) -> 
+                //             match body with
+                //             | HttpResponseBody.Binary bytes -> bytes
+                //             | _ -> [||]));
         })
 
 

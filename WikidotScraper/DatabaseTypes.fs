@@ -33,13 +33,13 @@ module private DataReaderExtensions =
 
 module main =
     [<CLIMutable>]
-    type parts_core_expansion = { id: int64; name: string }
+    type parts_core_expansion = { part_id: int64; name: string }
 
     let parts_core_expansion = SqlHydra.Query.Table.table<parts_core_expansion>
 
     [<CLIMutable>]
     type parts_frame_arms =
-        { id: int64
+        { part_id: int64
           name: string
           manufacturer: string
           ap: int
@@ -60,7 +60,7 @@ module main =
 
     [<CLIMutable>]
     type parts_frame_core =
-        { id: int64
+        { part_id: int64
           name: string
           manufacturer: string
           ap: int
@@ -81,7 +81,7 @@ module main =
 
     [<CLIMutable>]
     type parts_frame_head =
-        { id: int64
+        { part_id: int64
           name: string
           manufacturer: string
           ap: int
@@ -102,7 +102,7 @@ module main =
 
     [<CLIMutable>]
     type parts_frame_legs =
-        { id: int64
+        { part_id: int64
           name: string
           part_type: string
           manufacturer: string
@@ -124,7 +124,7 @@ module main =
 
     [<CLIMutable>]
     type parts_internal_boosters =
-        { id: int64
+        { part_id: int64
           name: string
           manufacturer: string
           thrust: int
@@ -148,7 +148,7 @@ module main =
 
     [<CLIMutable>]
     type parts_internal_fcs =
-        { id: int64
+        { part_id: int64
           name: string
           manufacturer: string
           close_range_assist: int
@@ -166,7 +166,7 @@ module main =
 
     [<CLIMutable>]
     type parts_internal_generator =
-        { id: int64
+        { part_id: int64
           name: string
           manufacturer: string
           en_capacity: int
@@ -183,7 +183,7 @@ module main =
 
     [<CLIMutable>]
     type parts_weapon =
-        { id: int64
+        { part_id: int64
           slot: string
           name: string
           part_type: string
@@ -225,18 +225,18 @@ module main =
 
     module Readers =
         type parts_core_expansionReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
-            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
+            member __.part_id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "part_id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
 
             member __.Read() =
-                { parts_core_expansion.id = __.id.Read()
+                { parts_core_expansion.part_id = __.part_id.Read()
                   name = __.name.Read() }
 
             member __.ReadIfNotNull() =
-                if __.id.IsNull() then None else Some(__.Read())
+                if __.part_id.IsNull() then None else Some(__.Read())
 
         type parts_frame_armsReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
-            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
+            member __.part_id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "part_id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt32, "ap")
@@ -254,7 +254,7 @@ module main =
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
-                { parts_frame_arms.id = __.id.Read()
+                { parts_frame_arms.part_id = __.part_id.Read()
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
                   ap = __.ap.Read()
@@ -272,10 +272,10 @@ module main =
                   image = __.image.Read() }
 
             member __.ReadIfNotNull() =
-                if __.id.IsNull() then None else Some(__.Read())
+                if __.part_id.IsNull() then None else Some(__.Read())
 
         type parts_frame_coreReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
-            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
+            member __.part_id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "part_id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt32, "ap")
@@ -293,7 +293,7 @@ module main =
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
-                { parts_frame_core.id = __.id.Read()
+                { parts_frame_core.part_id = __.part_id.Read()
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
                   ap = __.ap.Read()
@@ -311,10 +311,10 @@ module main =
                   image = __.image.Read() }
 
             member __.ReadIfNotNull() =
-                if __.id.IsNull() then None else Some(__.Read())
+                if __.part_id.IsNull() then None else Some(__.Read())
 
         type parts_frame_headReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
-            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
+            member __.part_id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "part_id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.ap = RequiredColumn(reader, getOrdinal, reader.GetInt32, "ap")
@@ -332,7 +332,7 @@ module main =
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
-                { parts_frame_head.id = __.id.Read()
+                { parts_frame_head.part_id = __.part_id.Read()
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
                   ap = __.ap.Read()
@@ -350,10 +350,10 @@ module main =
                   image = __.image.Read() }
 
             member __.ReadIfNotNull() =
-                if __.id.IsNull() then None else Some(__.Read())
+                if __.part_id.IsNull() then None else Some(__.Read())
 
         type parts_frame_legsReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
-            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
+            member __.part_id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "part_id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.part_type = RequiredColumn(reader, getOrdinal, reader.GetString, "part_type")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
@@ -372,7 +372,7 @@ module main =
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
-                { parts_frame_legs.id = __.id.Read()
+                { parts_frame_legs.part_id = __.part_id.Read()
                   name = __.name.Read()
                   part_type = __.part_type.Read()
                   manufacturer = __.manufacturer.Read()
@@ -391,10 +391,10 @@ module main =
                   image = __.image.Read() }
 
             member __.ReadIfNotNull() =
-                if __.id.IsNull() then None else Some(__.Read())
+                if __.part_id.IsNull() then None else Some(__.Read())
 
         type parts_internal_boostersReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
-            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
+            member __.part_id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "part_id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.thrust = RequiredColumn(reader, getOrdinal, reader.GetInt32, "thrust")
@@ -415,7 +415,7 @@ module main =
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
-                { parts_internal_boosters.id = __.id.Read()
+                { parts_internal_boosters.part_id = __.part_id.Read()
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
                   thrust = __.thrust.Read()
@@ -436,10 +436,10 @@ module main =
                   image = __.image.Read() }
 
             member __.ReadIfNotNull() =
-                if __.id.IsNull() then None else Some(__.Read())
+                if __.part_id.IsNull() then None else Some(__.Read())
 
         type parts_internal_fcsReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
-            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
+            member __.part_id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "part_id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.close_range_assist = RequiredColumn(reader, getOrdinal, reader.GetInt32, "close_range_assist")
@@ -454,7 +454,7 @@ module main =
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
-                { parts_internal_fcs.id = __.id.Read()
+                { parts_internal_fcs.part_id = __.part_id.Read()
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
                   close_range_assist = __.close_range_assist.Read()
@@ -469,10 +469,10 @@ module main =
                   image = __.image.Read() }
 
             member __.ReadIfNotNull() =
-                if __.id.IsNull() then None else Some(__.Read())
+                if __.part_id.IsNull() then None else Some(__.Read())
 
         type parts_internal_generatorReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
-            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
+            member __.part_id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "part_id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.manufacturer = RequiredColumn(reader, getOrdinal, reader.GetString, "manufacturer")
             member __.en_capacity = RequiredColumn(reader, getOrdinal, reader.GetInt32, "en_capacity")
@@ -486,7 +486,7 @@ module main =
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
-                { parts_internal_generator.id = __.id.Read()
+                { parts_internal_generator.part_id = __.part_id.Read()
                   name = __.name.Read()
                   manufacturer = __.manufacturer.Read()
                   en_capacity = __.en_capacity.Read()
@@ -500,10 +500,10 @@ module main =
                   image = __.image.Read() }
 
             member __.ReadIfNotNull() =
-                if __.id.IsNull() then None else Some(__.Read())
+                if __.part_id.IsNull() then None else Some(__.Read())
 
         type parts_weaponReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
-            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")
+            member __.part_id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "part_id")
             member __.slot = RequiredColumn(reader, getOrdinal, reader.GetString, "slot")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
             member __.part_type = RequiredColumn(reader, getOrdinal, reader.GetString, "part_type")
@@ -532,7 +532,7 @@ module main =
             member __.image = OptionalColumn(reader, getOrdinal, reader.GetFieldValue, "image")
 
             member __.Read() =
-                { parts_weapon.id = __.id.Read()
+                { parts_weapon.part_id = __.part_id.Read()
                   slot = __.slot.Read()
                   name = __.name.Read()
                   part_type = __.part_type.Read()
@@ -561,7 +561,7 @@ module main =
                   image = __.image.Read() }
 
             member __.ReadIfNotNull() =
-                if __.id.IsNull() then None else Some(__.Read())
+                if __.part_id.IsNull() then None else Some(__.Read())
 
         type testReader(reader: System.Data.Common.DbDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt64, "id")

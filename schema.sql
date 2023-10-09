@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS
 parts_frame_head (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    part_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
     manufacturer TEXT NOT NULL,
     ap INT NOT NULL,
     anti_kinetic_defense INT NOT NULL,
@@ -20,8 +20,8 @@ parts_frame_head (
 
 CREATE TABLE IF NOT EXISTS
 parts_frame_core (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    part_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
     manufacturer TEXT NOT NULL,
     ap INT NOT NULL,
     anti_kinetic_defense INT NOT NULL,
@@ -40,8 +40,8 @@ parts_frame_core (
 
 CREATE TABLE IF NOT EXISTS
 parts_frame_arms (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    part_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
     manufacturer TEXT NOT NULL,
     ap INT NOT NULL,
     anti_kinetic_defense INT NOT NULL,
@@ -60,8 +60,8 @@ parts_frame_arms (
 
 CREATE TABLE IF NOT EXISTS
 parts_frame_legs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    part_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
     part_type TEXT NOT NULL,
     manufacturer TEXT NOT NULL,
     ap INT NOT NULL,
@@ -81,8 +81,8 @@ parts_frame_legs (
 
 CREATE TABLE IF NOT EXISTS
 parts_internal_boosters (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    part_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
     manufacturer TEXT NOT NULL,
     thrust INT NOT NULL,
     upward_thrust INT NOT NULL,
@@ -104,8 +104,8 @@ parts_internal_boosters (
 
 CREATE TABLE IF NOT EXISTS
 parts_internal_fcs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    part_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
     manufacturer TEXT NOT NULL,
     close_range_assist INT NOT NULL,
     medium_range_assist INT NOT NULL,
@@ -121,8 +121,8 @@ parts_internal_fcs (
 
 CREATE TABLE IF NOT EXISTS
 parts_internal_generator (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    part_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
     manufacturer TEXT NOT NULL,
     en_capacity INT NOT NULL,
     en_recharge INT NOT NULL,
@@ -137,9 +137,9 @@ parts_internal_generator (
 
 CREATE TABLE IF NOT EXISTS
 parts_weapon (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    part_id INTEGER PRIMARY KEY,
     slot TEXT NOT NULL,
-    name TEXT NOT NULL,
+    name TEXT NOT NULL UNIQUE,
     part_type TEXT NOT NULL,
     manufacturer TEXT NOT NULL,
     attack_power INT,
@@ -168,6 +168,6 @@ parts_weapon (
 
 CREATE TABLE IF NOT EXISTS
 parts_core_expansion (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    part_id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
 );

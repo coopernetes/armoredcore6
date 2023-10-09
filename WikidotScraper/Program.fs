@@ -5,6 +5,7 @@ open FSharp.Data
 open SqlHydra.Query
 open System.Data.SQLite
 open WikidotScraper.DatabaseTypes
+open SqlHydra.Query.SqliteExtensions
 
 [<Literal>]
 let baseUrl = "http://armoredcore6.wikidot.com"
@@ -38,7 +39,7 @@ let TableContentToRowList (content: HtmlNode) =
 let ToHeadParts (rows : list<list<string>>) : seq<main.parts_frame_head> =
     rows
     |> Seq.map (fun tds -> {
-            id = 0;
+            part_id = 0;
             name = tds[0];
             manufacturer = tds[1];
             ap = tds[2] |> int;
@@ -73,7 +74,7 @@ let ToCoreParts (rows : list<list<string>>) : seq<main.parts_frame_core> =
     rows
     |> Seq.map (fun tds -> 
     {
-        id = 0;
+        part_id = 0;
         name = tds.[0];
         manufacturer = tds.[1];
         ap = tds.[2] |> int;
@@ -98,7 +99,7 @@ let ToArmParts (rows : list<list<string>>) : seq<main.parts_frame_arms> =
     // Source: https://armoredcore.fandom.com/wiki/AC-3000_WRECKER
     if tds.[0] = "AC-3000 WRECKER" then
         {
-            id = 0;
+            part_id = 0;
             name = tds.[0];
             manufacturer = tds.[1];
             ap = tds.[2] |> int;
@@ -117,7 +118,7 @@ let ToArmParts (rows : list<list<string>>) : seq<main.parts_frame_arms> =
         }
     else
     {
-        id = 0;
+        part_id = 0;
         name = tds.[0];
         manufacturer = tds.[1];
         ap = tds.[2] |> int;
@@ -139,7 +140,7 @@ let ToLegParts (rows : list<list<string>>) : seq<main.parts_frame_legs> =
     rows
     |> Seq.map (fun tds ->
     {
-        id = 0;
+        part_id = 0;
         name = tds.[0];
         part_type = tds.[1];
         manufacturer = tds.[2];
@@ -164,7 +165,7 @@ let ToBoosterParts (rows : list<list<string>>) : seq<main.parts_internal_booster
     rows
     |> Seq.map (fun tds -> 
     {
-        id = 0;
+        part_id = 0;
         name = tds.[0];
         manufacturer = tds.[1];
         thrust = tds.[2] |> int;
@@ -189,7 +190,7 @@ let ToFcsParts (rows : list<list<string>>) : seq<main.parts_internal_fcs> =
     rows
     |> Seq.map (fun tds ->
     {
-        id = 0;
+        part_id = 0;
         name = tds.[0];
         manufacturer = tds.[1];
         close_range_assist = tds.[2] |> int;
@@ -208,7 +209,7 @@ let ToGeneratorParts (rows : list<list<string>>) : seq<main.parts_internal_gener
     rows
     |> Seq.map (fun tds ->
     {
-        id = 0;
+        part_id = 0;
         name = tds.[0];
         manufacturer = tds.[1];
         en_capacity = tds.[2] |> int;
@@ -231,22 +232,6 @@ let ToWeaponParts (rows : list<list<string>>) : seq<main.parts_weapon> =
         "HML-G2/P19 MLT-04"
     ]
 
-
-    // "45-091 JVLN BETA"
-    // atk pow = 791
-    // impact = 717
-    // accum imp = 563
-    // blast rad = 20
-    // direct hit adj = 165
-    // guidance = 360
-    // effective range = 360
-    // homing active time = 2.4
-    // max lock count = 1
-    // total rounds = 32
-    // reload time = 3.6
-    // ammo cost = 450
-    // weight = 4250
-    // en load = 425
     rows
     |> Seq.filter (fun tds -> exclude |> Seq.contains tds.[1] |> not)
     |> Seq.map (fun tds -> 
@@ -301,7 +286,7 @@ let ToWeaponParts (rows : list<list<string>>) : seq<main.parts_weapon> =
                 | 2 -> Some(accumImpactParts.[1] |> int)
                 | _ -> failwith "Invalid accumulative impact"
         {
-            id = 0;
+            part_id = 0;
             slot = tds.[0];
             name = tds.[1];
             part_type = tds.[2];
@@ -342,8 +327,96 @@ let openContext() =
     conn.Open()
     new QueryContext(conn, compiler)
 
-type HeadParts2 =
-    HtmlProvider<"http://armoredcore6.wikidot.com/head/p/2">
+type Parts = 
+    | Head of main.parts_frame_head
+    | Core of main.parts_frame_core
+    | Arms of main.parts_frame_arms
+    | Legs of main.parts_frame_legs
+    | Booster of main.parts_internal_boosters
+    | Fcs of main.parts_internal_fcs
+    | Generator of main.parts_internal_generator
+    | Weapon of main.parts_weapon
+
+let getPartName (parts: Parts) : string =
+    match parts with
+    | Head p -> p.name
+    | Core p -> p.name
+    | Arms p -> p.name
+    | Legs p -> p.name
+    | Booster p -> p.name
+    | Fcs p -> p.name
+    | Generator p -> p.name
+    | Weapon p -> p.name
+
+
+let PartExists (parts: Parts, getNameFn: (Parts) -> string) : bool =
+    let name = getNameFn parts
+    match parts with
+    | Head p ->
+        let task = 
+            selectTask HydraReader.Read (Create openContext) {
+                for p in main.parts_frame_head do
+                where (p.name = name)
+                select p.part_id
+            }
+        task.Result |> Seq.length > 0
+    | Core p ->
+        let task = 
+            selectTask HydraReader.Read (Create openContext) {
+                for p in main.parts_frame_core do
+                where (p.name = name)
+                select p.part_id
+            }
+        task.Result |> Seq.length > 0
+    | Arms p ->
+        let task = 
+            selectTask HydraReader.Read (Create openContext) {
+                for p in main.parts_frame_arms do
+                where (p.name = name)
+                select p.part_id
+            }
+        task.Result |> Seq.length > 0
+    | Legs p ->
+        let task = 
+            selectTask HydraReader.Read (Create openContext) {
+                for p in main.parts_frame_legs do
+                where (p.name = name)
+                select p.part_id
+            }
+        task.Result |> Seq.length > 0
+    | Booster p ->
+        let task = 
+            selectTask HydraReader.Read (Create openContext) {
+                for p: main.parts_internal_boosters in main.parts_internal_boosters do
+                where (p.name = name)
+                select p.part_id
+            }
+        task.Result |> Seq.length > 0
+    | Fcs p ->
+        let task = 
+            selectTask HydraReader.Read (Create openContext) {
+                for p in main.parts_internal_fcs do
+                where (p.name = name)
+                select p.part_id
+            }
+        task.Result |> Seq.length > 0
+    | Generator p ->
+        let task = 
+            selectTask HydraReader.Read (Create openContext) {
+                for p in main.parts_internal_generator do
+                where (p.name = name)
+                select p.part_id
+            }
+        task.Result |> Seq.length > 0
+    | Weapon p ->
+        let task = 
+            selectTask HydraReader.Read (Create openContext) {
+                for p in main.parts_weapon do
+                where (p.name = name)
+                select p.part_id
+            }
+        task.Result |> Seq.length > 0
+
 
 
 [<EntryPoint>]
@@ -373,7 +446,6 @@ let main args =
         |> TableContentToRowList
         |> ToWeaponParts
         |> Seq.toList
-
     let weaponParts2 =
         buildUrl "/weapon/p/2"
         |> pageContent
@@ -400,13 +472,17 @@ let main args =
         |> List.append weaponParts4
 
     for part in weaponParts do
-        let result = 
-            insertTask (Create openContext) {
-                for p in main.parts_weapon do
-                entity part
-                getId p.id
-            }
-        printfn $"- inserted {result.Result}, part {part.name}"
+        if PartExists (Weapon part, getPartName) then
+            printfn $"    skipping {part.name}"
+        else
+            printfn $"- inserting {part.name}"
+            let result = 
+                insertTask (Create openContext) {
+                    for p in main.parts_weapon do
+                    entity part
+                    getId p.part_id
+                }
+            printfn $"    id: {result.Result}"
 
     printfn ""
     printfn "(FRAME) Head parts"
@@ -429,13 +505,16 @@ let main args =
         List.append headParts1 headParts2
 
     for part in headParts do
-        let result = 
-            insertTask (Create openContext) {
-                for p in main.parts_frame_head do
-                entity part
-                getId p.id
-            }
-        printfn $"- inserted {result.Result}, part {part.name}"
+        if PartExists (Head part, getPartName) then
+            printfn $"    skipping {part.name}"
+        else
+            let result = 
+                insertTask (Create openContext) {
+                    for p in main.parts_frame_head do
+                    entity part
+                    getId p.part_id
+                }
+            printfn $"- inserted {result.Result}, part {part.name}"
 
     printfn ""
     printfn "(FRAME) Core parts"
@@ -448,13 +527,16 @@ let main args =
         |> Seq.toList
 
     for part in coreParts do
-        let result = 
-            insertTask (Create openContext) {
-                for p in main.parts_frame_core do
-                entity part
-                getId p.id
-            }
-        printfn $"- inserted {result.Result}, part {part.name}"
+        if PartExists (Core part, getPartName) then
+            printfn $"    skipping {part.name}"
+        else
+            let result = 
+                insertTask (Create openContext) {
+                    for p in main.parts_frame_core do
+                    entity part
+                    getId p.part_id
+                }
+            printfn $"- inserted {result.Result}, part {part.name}"
     
     printfn ""
     printfn "(FRAME) Arm parts"
@@ -467,13 +549,16 @@ let main args =
         |> Seq.toList
 
     for part in armParts do
-        let result = 
-            insertTask (Create openContext) {
-                for p in main.parts_frame_arms do
-                entity part
-                getId p.id
-            }
-        printfn $"- inserted {result.Result}, part {part.name}"
+        if PartExists (Arms part, getPartName) then
+            printfn $"    skipping {part.name}"
+        else
+            let result = 
+                insertTask (Create openContext) {
+                    for p in main.parts_frame_arms do
+                    entity part
+                    getId p.part_id
+                }
+            printfn $"- inserted {result.Result}, part {part.name}"
 
     printfn ""
     printfn "(FRAME) Leg parts"
@@ -495,13 +580,16 @@ let main args =
         List.append legParts1 legParts2
 
     for part in legParts do
-        let result = 
-            insertTask (Create openContext) {
-                for p in main.parts_frame_legs do
-                entity part
-                getId p.id
-            }
-        printfn $"- inserted {result.Result}, part {part.name}"
+        if PartExists (Legs part, getPartName) then
+            printfn $"    skipping {part.name}"
+        else
+            let result = 
+                insertTask (Create openContext) {
+                    for p in main.parts_frame_legs do
+                    entity part
+                    getId p.part_id
+                }
+            printfn $"- inserted {result.Result}, part {part.name}"
 
     printfn ""
     printfn "(INTERNAL) Booster parts"
@@ -514,13 +602,16 @@ let main args =
         |> Seq.toList
 
     for part in boosterParts do
-        let result = 
-            insertTask (Create openContext) {
-                for p in main.parts_internal_boosters do
-                entity part
-                getId p.id
-            }
-        printfn $"- inserted {result.Result}, part {part.name}"
+        if PartExists (Booster part, getPartName) then
+            printfn $"    skipping {part.name}"
+        else
+            let result = 
+                insertTask (Create openContext) {
+                    for p in main.parts_internal_boosters do
+                    entity part
+                    getId p.part_id
+                }
+            printfn $"- inserted {result.Result}, part {part.name}"
 
     printfn ""
     printfn "(INTERNAL) FCS parts"
@@ -533,13 +624,16 @@ let main args =
         |> Seq.toList
 
     for part in fcsParts do
-        let result = 
-            insertTask (Create openContext) {
-                for p in main.parts_internal_fcs do
-                entity part
-                getId p.id
-            }
-        printfn $"- inserted {result.Result}, part {part.name}"
+        if PartExists (Fcs part, getPartName) then
+            printfn $"    skipping {part.name}"
+        else
+            let result = 
+                insertTask (Create openContext) {
+                    for p in main.parts_internal_fcs do
+                    entity part
+                    getId p.part_id
+                }
+            printfn $"- inserted {result.Result}, part {part.name}"
 
     printfn ""
     printfn "(INTERNAL) Generator parts"
@@ -552,12 +646,15 @@ let main args =
         |> Seq.toList
 
     for part in generatorParts do
-        let result = 
-            insertTask (Create openContext) {
-                for p in main.parts_internal_generator do
-                entity part
-                getId p.id
-            }
-        printfn $"- inserted {result.Result}, part {part.name}"
+        if PartExists (Generator part, getPartName) then
+            printfn $"    skipping {part.name}"
+        else
+            let result = 
+                insertTask (Create openContext) {
+                    for p in main.parts_internal_generator do
+                    entity part
+                    getId p.part_id
+                }
+            printfn $"- inserted {result.Result}, part {part.name}"
 
     0

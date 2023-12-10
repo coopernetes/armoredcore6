@@ -1,6 +1,13 @@
 # Armored Core 6
 SQLite database for Armored Core 6 parts &amp; stats. I've always wanted to write a build creator or randomizer as a side project, so I'm starting with the database. This is a work in progress.
 
+## This repo is archived
+Wikidot is not kept up-to-date with the latest patch changes so this scraper does not have complete and accurate data with the latest changes and future upcoming patches.
+
+An [updated spreadsheet can be found here](https://docs.google.com/spreadsheets/d/1ab2e2XfjAf7QgV359hW_Yd3kunVWKi9Loy7wCeAmT4w/edit#gid=719401881) which is the most comprehensive set of tables for AC6 parts data. Courtesy of [Armored Core Discord](https://discord.gg/fKfm7ex5S6).
+
+A [handy web site is also available](https://fear-nothing.glide.page/) to view all AC6 data.
+
 ### Why not just use a spreadsheet?
 I'm a lazy developer and would rather write a scraper than manually copy-paste data. Also, I wanted to learn [F#](https://fsharp.org/) and this seemed like a good project to do that with.
 

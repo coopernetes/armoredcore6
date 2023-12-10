@@ -21,6 +21,7 @@ fi
 if [[ $1 == "schema" ]]; then
     sqlite3 ./data/ArmoredCore6.db < schema.sql
     sqlite3 ./data/ArmoredCore6.db < test.sql
+    (cd WikidotScraper && dotnet tool restore)
     dotnet clean WikidotScraper/WikidotScraper.fsproj
     exit 0
 fi

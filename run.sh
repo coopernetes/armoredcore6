@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x
+set -ex
 ./manage-db.sh clean
 ./manage-db.sh schema
 dotnet run --project WikidotScraper/WikidotScraper.fsproj
